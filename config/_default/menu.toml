@@ -1,10 +1,10 @@
 # Configure main menu and social menu
-[[main]]
-identifier = "home"
-name = "主页"
-url = "/"
-[main.params]
-icon = "home"
+# [[main]]
+# identifier = "home"
+# name = "主页"
+# url = "/"
+# [main.params]
+# icon = "home"
 # newtab = true
 
 [[social]]
@@ -16,9 +16,17 @@ url = "https://github.com/LaiZho/LaiZho.github.io"
 icon = "brand-github"
 
 [[social]]
-identifier = "twitter"
-name = "Twitter"
-url = "https://twitter.com"
+identifier = "Mail"
+name = "Mail"
+url = "mailto:gitmob@outlook.com"
 
 [social.params]
-icon = "brand-twitter"
+icon = "mail"
+
+[[social]]
+identifier = "RSS"
+name = "RSS"
+url = "https://laizho.github.io/index.xml"
+
+[[social.params]]
+icon = "rss"
