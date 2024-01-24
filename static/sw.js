@@ -1,108 +1,53 @@
-const workboxVersion = '7.0.0';
+const CACHE_NAME = 'hazymoon_sw';
+const OFFLINE_URL = '/offline.html';
+const OFFLINE_IMAGE = '/offline.jpg';
 
-importScripts(`https://storage.googleapis.com/workbox-cdn/releases/${workboxVersion}/workbox-sw.js`);
-
-workbox.core.setCacheNameDetails({
-    prefix: "dhyjsa Favorites"
+// 注册离线页面资源
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            cache.add(new Request(OFFLINE_URL, {
+                cache: "reload"
+            }))
+            cache.add(new Request(OFFLINE_IMAGE, {
+                cache: "reload"
+            }))
+        })
+    );
 });
 
-workbox.core.skipWaiting();
+// 如果支持，启用预加载
+self.addEventListener('activate', (event) => {
+    event.waitUntil((async () => {
+        if ('navigationPreload' in self.registration) {
+            await self.registration.navigationPreload.enable();
+        }
+    })());
+    self.clients.claim();
+});
 
-workbox.core.clientsClaim();
+self.skipWaiting();
 
-workbox.precaching.precacheAndRoute([]);
-
-workbox.precaching.cleanupOutdatedCaches();
-
-// Images
-workbox.routing.registerRoute(
-    /\.(?:png|jpg|jpeg|gif|bmp|webp|svg|ico)$/,
-    new workbox.strategies.CacheFirst({
-        cacheName: "images",
-        plugins: [
-            new workbox.expiration.ExpirationPlugin({
-                maxEntries: 1000,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-            }),
-            new workbox.cacheableResponse.CacheableResponsePlugin({
-                statuses: [0, 200]
-            })
-        ]
-    })
-);
-
-// Fonts
-workbox.routing.registerRoute(
-    /\.(?:eot|ttf|woff|woff2)$/,
-    new workbox.strategies.CacheFirst({
-        cacheName: "fonts",
-        plugins: [
-            new workbox.expiration.ExpirationPlugin({
-                maxEntries: 1000,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-            }),
-            new workbox.cacheableResponse.CacheableResponsePlugin({
-                statuses: [0, 200]
-            })
-        ]
-    })
-);
-
-// Google Fonts
-workbox.routing.registerRoute(
-    /^https:\/\/fonts\.googleapis\.com/,
-    new workbox.strategies.StaleWhileRevalidate({
-        cacheName: "google-fonts-stylesheets"
-    })
-);
-workbox.routing.registerRoute(
-    /^https:\/\/fonts\.gstatic\.com/,
-    new workbox.strategies.CacheFirst({
-        cacheName: 'google-fonts-webfonts',
-        plugins: [
-            new workbox.expiration.ExpirationPlugin({
-                maxEntries: 1000,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-            }),
-            new workbox.cacheableResponse.CacheableResponsePlugin({
-                statuses: [0, 200]
-            })
-        ]
-    })
-);
-
-// Static Libraries
-workbox.routing.registerRoute(
-    /^https:\/\/cdn\.jsdelivr\.net/,
-    new workbox.strategies.CacheFirst({
-        cacheName: "static-libs",
-        plugins: [
-            new workbox.expiration.ExpirationPlugin({
-                maxEntries: 1000,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-            }),
-            new workbox.cacheableResponse.CacheableResponsePlugin({
-                statuses: [0, 200]
-            })
-        ]
-    })
-);
-
-// External Images
-workbox.routing.registerRoute(
-    /^https:\/\/raw\.githubusercontent\.com\/reuixiy\/hugo-theme-meme\/master\/static\/icons\/.*/,
-    new workbox.strategies.CacheFirst({
-        cacheName: "external-images",
-        plugins: [
-            new workbox.expiration.ExpirationPlugin({
-                maxEntries: 1000,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-            }),
-            new workbox.cacheableResponse.CacheableResponsePlugin({
-                statuses: [0, 200]
-            })
-        ]
-    })
-);
-
-workbox.googleAnalytics.initialize();
+self.addEventListener('fetch', (event) => {
+    if (event.request.url.startsWith(self.location.origin) || event.request.url.match(/^https:\/\/cdn\.jsdelivr\.net/)) {
+        event.respondWith((async () => {
+            const cache = await caches.open(CACHE_NAME);
+            try {
+                const networkResponse = await fetch(event.request);
+                if (networkResponse.status === 200) {
+                    // 必须返回200才存储资源，防止出现错误，视频类的资源会返回206（成功但又没有完全成功）
+                    await cache.put(event.request, networkResponse.clone());
+                }
+                return networkResponse;
+            } catch (error) {
+                // 如果网络请求失败，返回离线页面
+                let cachedResponse = await cache.match(event.request);
+                if (cachedResponse) {
+                    return cachedResponse;
+                } else {
+                    return await cache.match(OFFLINE_URL);
+                }
+            }
+        })());
+    }
+});

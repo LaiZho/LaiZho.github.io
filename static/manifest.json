@@ -3,10 +3,10 @@
   "short_name": "dhyjsa Favorites",
   "theme_color": "#fff",
   "background_color": "#fff",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/index.html",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
