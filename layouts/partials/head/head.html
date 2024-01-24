@@ -2,6 +2,8 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 <script async src="https://fuqin.tinqin881.top/script.js" data-website-id="8d99a3e1-182c-4e1b-852d-740c9b48cc05"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.12/dist/fancybox.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.12/dist/fancybox.umd.js"></script>
 {{- $description := partialCached "data/description" . .RelPermalink -}}
 <meta name='description' content='{{ $description }}'>
 {{ with .Params.Keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
