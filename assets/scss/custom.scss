@@ -550,3 +550,34 @@ body, .article-content {
   font-family: 'LXGW WenKai Mono Lite', serif;
   // font-family: 'LXGW WenKai Mono Lite', cursive;
 }
+
+.widget--toc {
+  #TableOfContents {
+      max-height: 65vh;
+
+      ol,
+      ul {
+          list-style-type: none;
+      }
+
+      li {
+          margin: 10px 10px;
+
+          & > ol,
+          & > ul {
+              margin-top: 10px;
+              padding-left: 10px;
+              margin-bottom: -5px;
+
+              & > li:last-child {
+                  margin-bottom: 0;
+              }
+          }
+      }
+  }
+}
+
+::selection {
+  color: #fff;
+  background: #557697;
+}
