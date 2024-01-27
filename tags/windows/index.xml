@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows on dhyjsa Favorites</title><link>https://blog.tinqin881.top/tags/windows/</link><description>Recent content in Windows on dhyjsa Favorites</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 03 Oct 2022 12:12:07 +0800</lastBuildDate><atom:link href="https://blog.tinqin881.top/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows7+IIS7+PHP+MySQL</title><link>https://blog.tinqin881.top/p/windows7-iis7-php-mysql/</link><pubDate>Mon, 03 Oct 2022 12:12:07 +0800</pubDate><guid>https://blog.tinqin881.top/p/windows7-iis7-php-mysql/</guid><description>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/index.png" alt="Featured image of post Windows7+IIS7+PHP+MySQL" />&lt;blockquote>
+&lt;p>原文连接：&lt;a class="link" href="https://zhuanlan.zhihu.com/p/44466181" target="_blank" rel="noopener"
+>Windows7+IIS7+PHP+MySQL&lt;/a>&lt;/p>
+&lt;p>原文作者：&lt;strong>Dy大叔&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="配置需求">配置需求&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>操作系统&lt;/strong>：Windows7(x32/x64), windows2008&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>IIS版本：&lt;/strong> 7.0&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>PHP版本：&lt;/strong> 7.0.6 及以上&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>MySQL版本：&lt;/strong> 5.7.12 及以上&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="第一步安装-iis">第一步：安装 IIS&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>注意：&lt;/strong> 从IIS 7+PHP 5.5版本开始，Windows下PHP环境的配置完全不一样，相比之前版本的安装更快更轻松，配合FastCGI，只需鼠标简单操作一下就可以运行PHP环境。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="1找到控制面板--程序和功能--打开或关闭windows功能">1.找到”控制面板 =&amp;gt; 程序和功能 =&amp;gt; 打开或关闭Windows功能“&lt;/h3>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-1.webp"
+width="414"
+height="218"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-1_huba91ebfce35eae61de99a88ee8e4a23d_16024_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-1_huba91ebfce35eae61de99a88ee8e4a23d_16024_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-1"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>默认”Internet 信息服务“打勾安装&lt;/p>
+&lt;p>直接选择CGI，会自动安装FastCGI，不需要再安装ISAPI&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-2.webp"
+width="298"
+height="405"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-2_hu6441358f4db5080fc9bf607332d957fe_24300_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-2_hu6441358f4db5080fc9bf607332d957fe_24300_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-2"
+class="gallery-image"
+data-flex-grow="73"
+data-flex-basis="176px"
+>&lt;/p>
+&lt;h3 id="2新建网站目录">2.新建网站目录&lt;/h3>
+&lt;p>运行-&amp;gt;&lt;strong>inetmgr&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-3.webp"
+width="348"
+height="167"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-3_hu353b8fa7fca2e69714b731549a40a27b_8386_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-3_hu353b8fa7fca2e69714b731549a40a27b_8386_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-3"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="500px"
+>&lt;/p>
+&lt;p>右击”网站=&amp;gt;添加网站“&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-4.webp"
+width="314"
+height="293"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-4_huec31470e8e9c850e8b452a3db5ee5042_11798_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-4_huec31470e8e9c850e8b452a3db5ee5042_11798_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-4"
+class="gallery-image"
+data-flex-grow="107"
+data-flex-basis="257px"
+>&lt;/p>
+&lt;p>添加网站信息，一定按图片所示设置，除了路径自选&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-5.webp"
+width="448"
+height="408"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-5_huf7369d68fa4ae5b58248f4f4c930c6e5_15942_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-5_huf7369d68fa4ae5b58248f4f4c930c6e5_15942_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-5"
+class="gallery-image"
+data-flex-grow="109"
+data-flex-basis="263px"
+>&lt;/p>
+&lt;p>弹出”80端口占用“，意味着你将会有另一个网站【Default Web Site】同时占用80端口，解决办法：&lt;/p>
+&lt;ol>
+&lt;li>点击取消，返回修改端口，重新确定。&lt;/li>
+&lt;li>点击确定，每次使用时，关闭其中一个网站&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-6.webp"
+width="416"
+height="148"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-6_hub0852df9fa74ac637c4ec35784db3718_8674_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-6_hub0852df9fa74ac637c4ec35784db3718_8674_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-6"
+class="gallery-image"
+data-flex-grow="281"
+data-flex-basis="674px"
+>&lt;/p>
+&lt;h2 id="第二步安装-php">第二步：安装 PHP&lt;/h2>
+&lt;p>&lt;strong>下载地址：&lt;a class="link" href="http://windows.php.net/download/" target="_blank" rel="noopener"
+>http://windows.php.net/download/&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>官网可以下载到Windows版的最新PHP包，但是&lt;a class="link" href="http://PHP.net" target="_blank" rel="noopener"
+>http://PHP.net&lt;/a>已经放弃5.6版以前的环境包，大叔这里整理了一份以前的环境包列表，有需要的同学可以自己去拿&lt;/p>
+&lt;p>&lt;strong>百度云盘：&lt;a class="link" href="https://pan.baidu.com/s/1BJgFhrCHRBj1VFkgGegZ8g" target="_blank" rel="noopener"
+>https://pan.baidu.com/s/1BJgFhrCHRBj1VFkgGegZ8g&lt;/a>&lt;/strong>
+&lt;strong>访问密码：11mh&lt;/strong>&lt;/p>
+&lt;p>将PHP环境包解压后，找到php.ini-xxx文件&lt;/p>
+&lt;p>既然是本地开发测试，大叔建议：复制”php.ini-development“ 并粘贴，重命名为php.ini&lt;/p>
+&lt;blockquote>
+&lt;p>php.ini-development**（5.5版以后名称）**
+php.ini-dist**（5.5版以后名称）**
+拥有较低的安全性设定，对权限设置适合开发程式使用php.ini-production
+php.ini-production**（5.5版以后名称）**
+php.ini-recommended**（5.5版以前名称）**
+拥有较高的安全性设定，则适合正式上线的服务器中使用&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="配置-phpini">配置 php.ini&lt;/h3>
+&lt;h4 id="1设置extension_dir插件">1.设置extension_dir插件&lt;/h4>
+&lt;p>搜索并找到&lt;strong>extension_dir = &amp;ldquo;&amp;rdquo;&lt;/strong>，在&amp;quot;&amp;ldquo;里面输入PHP插件ext目录所在的位置，&lt;strong>extension_dir = &amp;ldquo;C:/ProgramFiles/XXX/XXX/php目录名/ext&amp;rdquo;&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-7.webp"
+width="364"
+height="37"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-7_hu6bd56d027a6aacb52828d8113562500e_1942_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-7_hu6bd56d027a6aacb52828d8113562500e_1942_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-7"
+class="gallery-image"
+data-flex-grow="983"
+data-flex-basis="2361px"
+>&lt;/p>
+&lt;p>搜索并找到&lt;strong>extension_dir=&lt;/strong>，会找到插件目录列表，大叔建议打开以下插件（去掉前面”;“）维持大部分的PHP网站功能，如果有其他需求再打开其他插件（&lt;strong>注：配置一次PHP.ini就需要重启一次IIS&lt;/strong>）&lt;/p>
+&lt;p>插件名插件功能&lt;/p>
+&lt;p>extension=php_bz2.dll | 压缩插件
+extension=php_curl.dll | 远程粘贴
+extension=php_gd2.dll | GD库
+extension=php_mbstring.dl | l短标签
+extension=php_mysql.dll | MySQL老引擎
+extension=php_mysqli.dll | MySQL新引擎
+extension=php_pdo_mysql.dll | MySQLPDO连接&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-8.webp"
+width="230"
+height="220"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-8_hub97e199c35f3c862e16a2cb3914d7be4_12010_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-8_hub97e199c35f3c862e16a2cb3914d7be4_12010_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-8"
+class="gallery-image"
+data-flex-grow="104"
+data-flex-basis="250px"
+>&lt;/p>
+&lt;h4 id="2设置时区datetimezone--asiashanghai">2.设置时区：date.timezone = Asia/Shanghai&lt;/h4>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-9.webp"
+width="221"
+height="29"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-9_hu3aed5c77c0027b8b4de5f7626939fe1e_1836_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-9_hu3aed5c77c0027b8b4de5f7626939fe1e_1836_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-9"
+class="gallery-image"
+data-flex-grow="762"
+data-flex-basis="1828px"
+>&lt;/p>
+&lt;h4 id="3iis-添加-php-支持">3.IIS 添加 PHP 支持&lt;/h4>
+&lt;p>运行-&amp;gt;&lt;strong>inetmgr&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-10.webp"
+width="348"
+height="167"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-10_hu353b8fa7fca2e69714b731549a40a27b_8386_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/A1-10_hu353b8fa7fca2e69714b731549a40a27b_8386_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="A1-10"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="500px"
+>&lt;/p>
+&lt;p>打开：&lt;strong>处理程序映射&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-1.webp"
+width="789"
+height="466"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-1_huf9e021f19911c258d901026ab128d98a_33950_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-1_huf9e021f19911c258d901026ab128d98a_33950_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-1"
+class="gallery-image"
+data-flex-grow="169"
+data-flex-basis="406px"
+>&lt;/p>
+&lt;p>打开：&lt;strong>添加模块映射&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-2.webp"
+width="848"
+height="332"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-2_hu10bd84cc5bf44b6038910dc6801176eb_30322_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-2_hu10bd84cc5bf44b6038910dc6801176eb_30322_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-2"
+class="gallery-image"
+data-flex-grow="255"
+data-flex-basis="613px"
+>&lt;/p>
+&lt;p>填写如下内容&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-3.webp"
+width="396"
+height="320"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-3_hue435bd34f05ab18bbe02337577918636_10264_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-3_hue435bd34f05ab18bbe02337577918636_10264_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-3"
+class="gallery-image"
+data-flex-grow="123"
+data-flex-basis="297px"
+>&lt;/p>
+&lt;p>确定会有提示，点击”确定“&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-4.webp"
+width="416"
+height="148"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-4_hu7e46c0f8962d2720e0ad7e2bf44cd112_10072_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-4_hu7e46c0f8962d2720e0ad7e2bf44cd112_10072_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-4"
+class="gallery-image"
+data-flex-grow="281"
+data-flex-basis="674px"
+>&lt;/p>
+&lt;p>映射程序添加成功，列表中会有一条PHP程序映射记录&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-5.webp"
+width="448"
+height="75"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-5_hudc02eac89a33124710262b663e070215_6122_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-5_hudc02eac89a33124710262b663e070215_6122_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-5"
+class="gallery-image"
+data-flex-grow="597"
+data-flex-basis="1433px"
+>&lt;/p>
+&lt;p>这样一个&lt;strong>IIS&lt;/strong>+&lt;strong>PHP&lt;/strong>环境就搭建好了。&lt;/p>
+&lt;h4 id="php包版本型号区别">PHP包：版本/型号区别&lt;/h4>
+&lt;ul>
+&lt;li>5.5版本之前
+Windows配置IIS+PHP，需要安装VC9
+Windows配置Apache+PHP，需要安装VC6&lt;/li>
+&lt;li>5.5版本之后只有VCXX了，只要选线程方式和32位/64位系统就可以了
+Non Thread Safe是指非线程安全，Thread Safe则是指线程安全
+使用ISAPI的方式来运行PHP就必须用Thread Safe(线程安全)的版本
+使用FastCGI模式运行PHP的话就没有必要用线程安全检查了，用None Thread Safe(NTS，非线程安全)的版本能够更好的提高效率&lt;/li>
+&lt;/ul>
+&lt;h2 id="fastcgi-进程错误汇总">FastCGI 进程错误汇总&lt;/h2>
+&lt;h3 id="错误1php-cgiexe---fastcgi-进程意外退出">错误1：php-cgi.exe - FastCGI 进程意外退出&lt;/h3>
+&lt;p>打开**&lt;a class="link" href="http://localhost" target="_blank" rel="noopener"
+>http://localhost&lt;/a>**页面，提示以上错误，95%以上就是环境对应的VC版本没装对。&lt;/p>
+&lt;p>你需要寻找PHP VC号对应的Visual C++ Redistributable for Visual Studio开发版本：&lt;/p>
+&lt;p>VC6 | VC6.0
+VC7 | VS2002
+VC7.1 | VS2003
+VC8 | VS2005
+VC9 | VS2008
+VC10 | VS2010
+VC11 | VS2012
+VC12 | VS2013
+VC13 | VS2014
+VC14 | VS2015&lt;/p>
+&lt;p>&lt;strong>5.5&lt;/strong>版本需要安装 VS2012
+&lt;strong>5.7&lt;/strong>版本需要安装 VS2015&lt;/p>
+&lt;h3 id="错误2发生未知-fastcgi-错误错误代码为0x8007010b">错误2：发生未知 FastCGI 错误错误代码为0x8007010b&lt;/h3>
+&lt;p>如果之前的安装严格按照本文所述，那应该考虑权限问题，是否把PHP、Apache、MySQL程序放置在了C盘的严控权限位置（比如&lt;strong>桌面&lt;/strong>）。&lt;/p>
+&lt;p>将程序文件夹添加人员**【Everyone】，权限为【所有】**，重新刷新页面即可。&lt;/p>
+&lt;h2 id="第三步安装-mysql">第三步：安装 MySQL&lt;/h2>
+&lt;p>&lt;strong>下载地址：&lt;a class="link" href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener"
+>https://dev.mysql.com/downloads/mysql/&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>百度云盘：&lt;a class="link" href="https://pan.baidu.com/s/19ffxCVYgTUbmMzNwI8CB6g" target="_blank" rel="noopener"
+>https://pan.baidu.com/s/19ffxCVYgTUbmMzNwI8CB6g&lt;/a>&lt;/strong>
+&lt;strong>访问密码：l5fb&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>大叔建议使用免安装版，使用CMD方式安装，是最容易熟悉MySQL的方法，本文的安装流程是以绿色版为标准。
+百度网盘是本文配套的MySQL 5.7 官方免安装版&lt;/p>
+&lt;/blockquote>
+&lt;p>进入官网下载页面，拖至最下面，或在页面搜索 &lt;strong>Other Downloads:&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-6.webp"
+width="808"
+height="218"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-6_hu83dee73fbc19ea1bf1573fd496907c4e_14052_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-6_hu83dee73fbc19ea1bf1573fd496907c4e_14052_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-6"
+class="gallery-image"
+data-flex-grow="370"
+data-flex-basis="889px"
+>&lt;/p>
+&lt;p>32位系统下载：&lt;strong>Windows (x86, 32-bit), ZIP Archive&lt;/strong>
+64位系统下载：&lt;strong>Windows (x86, 64-bit), ZIP Archive&lt;/strong>&lt;/p>
+&lt;h3 id="配置-myini">配置 my.ini&lt;/h3>
+&lt;p>在 &lt;strong>my.ini&lt;/strong> 中，一定要存在下面的字符，如果不存在，就自己码进去，然后保存，&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[mysqld]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#skip-grant-tables #这名加上可以跳过验证&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">basedir&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="s">C:/User/Administrator/XXX/XXX/mysql-noinstall-5.1.53-win32 #根目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#datadir=C:/User/Administrator/XXX/XXX/mysql-noinstall-5.1.53-win32/data #数据文件存放目录&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2人工安装-mysql">2.人工安装 MySQL&lt;/h3>
+&lt;p>打开&lt;strong>CMD&lt;/strong>控制台&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-7.webp"
+width="417"
+height="248"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-7_hu382c1fa25db9e05d9d4791659e8d238a_9280_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-7_hu382c1fa25db9e05d9d4791659e8d238a_9280_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-7"
+class="gallery-image"
+data-flex-grow="168"
+data-flex-basis="403px"
+>&lt;/p>
+&lt;p>通过&lt;strong>CMD&lt;/strong>的 &lt;strong>cd&lt;/strong> 命令，进入MySQL的根目录下的&lt;strong>bin文件夹&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-8.webp"
+width="455"
+height="426"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-8_hu41523b252d7eff155a58b95d028e790a_30612_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-8_hu41523b252d7eff155a58b95d028e790a_30612_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-8"
+class="gallery-image"
+data-flex-grow="106"
+data-flex-basis="256px"
+>&lt;/p>
+&lt;p>在&lt;strong>bin&lt;/strong>文件夹下分别输入下面三条指令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-mysql" data-lang="mysql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">mysqld&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">install&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MySQL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">回车（成功会提示，&lt;/span>&lt;span class="n">S开头字母&lt;/span>&lt;span class="err">）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">mysqld&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">remove&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">回车（如果安装位置出错，就用这个命令删除配置，然后重新安装。）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">net&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">回车（成功会提示服务已经运行）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果安装成功，就可以通过&lt;strong>CMD&lt;/strong>命令，轻松开启/关闭&lt;strong>MySQL&lt;/strong>了&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-9.webp"
+width="476"
+height="272"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-9_hu395ea6b4ae239bfd66bf816b6d5fc1f4_16678_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-9_hu395ea6b4ae239bfd66bf816b6d5fc1f4_16678_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-9"
+class="gallery-image"
+data-flex-grow="175"
+data-flex-basis="420px"
+>&lt;/p>
+&lt;p>&lt;strong>注意：保存【my.ini】时编码一定设为Ansi，否则会报如下错误&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>error: Found option without preceding group in config file: D:\Program Files\mysql-5.6.25-winx64\my.ini at line: 1
+Fatal error in defaults handling. Program aborted。&lt;/p>
+&lt;/blockquote>
+&lt;p>这时，你在&lt;strong>CMD&lt;/strong>中运行&lt;strong>net start mysql&lt;/strong>命令，恭喜，你进入了MySQL的的卡死循环状态中。&lt;/p>
+&lt;h3 id="错误提示解决方案汇总">错误提示解决方案汇总&lt;/h3>
+&lt;h4 id="1服务无法启动">1.服务无法启动&lt;/h4>
+&lt;blockquote>
+&lt;p>C:XXX&amp;gt;mysql&amp;gt;bin&amp;gt;net start mysql
+MySQL 服务正在启动 &amp;hellip;.
+MySQL 服务无法启动。
+服务没有报告任何错误。
+请键入 NET HELPMSG 3534 以获得更多的帮助。&lt;/p>
+&lt;/blockquote>
+&lt;p>解决方案：&lt;a class="link" href="https://www.jianshu.com/171" target="_blank" rel="noopener"
+>【MySQL】服务无法启动，服务没有报告任何错误的解决办法&lt;/a>&lt;/p>
+&lt;h4 id="2新安装mysqlroot空密码无法登录">2.新安装MySQL，Root空密码无法登录&lt;/h4>
+&lt;blockquote>
+&lt;p>MySQL&amp;gt; mysql -u root -p
+Enter password:
+ERROR 1045 (28000): Access denied for user &amp;lsquo;root&amp;rsquo;@&amp;rsquo;localhost&amp;rsquo; (using password: YES)&lt;/p>
+&lt;/blockquote>
+&lt;p>解决方案：&lt;a class="link" href="https://www.jianshu.com/172" target="_blank" rel="noopener"
+>【MySQL】免安装版安装并启动成功后，无法登录，root帐户密码强制重设&lt;/a>&lt;/p>
+&lt;h2 id="第四步设置伪静态">第四步：设置伪静态&lt;/h2>
+&lt;h3 id="1下载-iis-7-的-microsoft-url-重写模块-20-模板">1.下载 IIS 7 的 Microsoft URL 重写模块 2.0 模板&lt;/h3>
+&lt;p>官网64位：&lt;a class="link" href="http://www.microsoft.com/zh-cn/download/details.aspx?id=7435" target="_blank" rel="noopener"
+>http://www.microsoft.com/zh-cn/download/details.aspx?id=7435&lt;/a>
+官网32位：&lt;a class="link" href="http://www.microsoft.com/zh-cn/download/details.aspx?id=5747" target="_blank" rel="noopener"
+>http://www.microsoft.com/zh-cn/download/details.aspx?id=5747&lt;/a>
+IIS URL Rewrite下载地址：&lt;a class="link" href="http://www.iis.net/download/URLRewrite" target="_blank" rel="noopener"
+>http://www.iis.net/download/URLRewrite&lt;/a>&lt;/p>
+&lt;h3 id="2设置webconfig">2.设置web.config&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rewrite&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rules&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rule name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite to index.php&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;match url&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;^index.html&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;action type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite&amp;#34; url=&amp;#34;index.php&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rule&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rule name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite to article.php&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;match url&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;^article_(d+).html&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;action type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite&amp;#34; url=&amp;#34;article.php?id={R:1}&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rule&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rule name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite to list.php&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;match url&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;^list_(d+)_(d+).html&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;action type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite&amp;#34; url=&amp;#34;list.php?id={R:1}&amp;amp;page={R:2}&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rule&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;rule name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite to category.php&amp;#34; stopProcessing=&amp;#34;true&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;match url&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;^(.*)&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;action type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Rewrite&amp;#34; url=&amp;#34;category.php?category={R:1}&amp;#34; /&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rule&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rules&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/rewrite&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="其他问题">其他问题&lt;/h3>
+&lt;h4 id="问题1file-upload-error---unable-to-create-a-temporary-file-in-unknown-on-line-0">问题1：File upload error - unable to create a temporary file in Unknown on line 0&lt;/h4>
+&lt;p>原因：因为PHP的临时目录为不可读写&lt;/p>
+&lt;p>解决方案：&lt;/p>
+&lt;ol>
+&lt;li>打开 &lt;strong>php.ini&lt;/strong> 找到 &lt;strong>upload_tmp_dir&lt;/strong>&lt;/li>
+&lt;li>找一个位置为php上传临时目录，然后 &lt;strong>upload_tmp_dir = &amp;ldquo;D://upload/&amp;rdquo;&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;h4 id="问题2php-notice-undefined-variable">问题2：PHP Notice: Undefined variable&lt;/h4>
+&lt;p>原因：PHP默认的配置会报这个错误，虽然有利于发现错误，但同时实践中会出现很多问题。&lt;/p>
+&lt;p>解决方法：&lt;/p>
+&lt;p>&lt;strong>方法1&lt;/strong>：修改 **php.ini **配置文件 **error_reporting **设置：&lt;/p>
+&lt;ol>
+&lt;li>找到 &lt;strong>error_reporting = E_ALL&lt;/strong>&lt;/li>
+&lt;li>修改为 &lt;strong>error_reporting = E_ALL &amp;amp; ~E_NOTICE&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>原理：减弱PHP的敏感程度，使其遇到这种问题不报错。（不推荐这种方式，会导致你错误的语法继续出错）&lt;/p>
+&lt;p>&lt;strong>方法2&lt;/strong>：在PHP文件头部加入以下代码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">ini_set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;error_reporting&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s2">&amp;#34;E_ALL &amp;amp; ~E_NOTICE&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同样也可以解决问题，但同样不推荐，这个方法。&lt;/p>
+&lt;p>&lt;strong>方法3：修正你的语法，让你的代码更规范！！！&lt;/strong>&lt;/p>
+&lt;h2 id="附录">附录&lt;/h2>
+&lt;h3 id="windows-2008-r2-iis角色安装方法">Windows 2008 R2 IIS角色安装方法&lt;/h3>
+&lt;blockquote>
+&lt;p>Windows 2008 R2是服务器版本，所以安装IIS7时和非服务器版有些不同，需要使用角色系统安装&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="第一步安装iis">第一步：安装IIS&lt;/h4>
+&lt;p>首先进入”控制面板=&amp;gt;打开或关闭Windows功能“&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-10.webp"
+width="414"
+height="218"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-10_huba91ebfce35eae61de99a88ee8e4a23d_16024_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/B1-10_huba91ebfce35eae61de99a88ee8e4a23d_16024_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="B1-10"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>服务器版本进入的是&lt;strong>服务器管理器&lt;/strong>，我们需要进入**【角色】**并添加角色来增加IIS功能&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-1.webp"
+width="766"
+height="295"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-1_hu796b3c2e03dc76bd6b786b11eafdaad2_18114_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-1_hu796b3c2e03dc76bd6b786b11eafdaad2_18114_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="C1-1"
+class="gallery-image"
+data-flex-grow="259"
+data-flex-basis="623px"
+>&lt;/p>
+&lt;p>进入引导页，点击”下一步“&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-2.webp"
+width="779"
+height="572"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-2_hu23695b4edf71544db30ddc41700345da_22242_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-2_hu23695b4edf71544db30ddc41700345da_22242_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="C1-2"
+class="gallery-image"
+data-flex-grow="136"
+data-flex-basis="326px"
+>&lt;/p>
+&lt;p>打勾”Web 服务器(IIS)“，点击下一步&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-3.webp"
+width="607"
+height="314"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-3_hu429269fd5cfb8df432c00dead8505c71_19866_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-3_hu429269fd5cfb8df432c00dead8505c71_19866_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="C1-3"
+class="gallery-image"
+data-flex-grow="193"
+data-flex-basis="463px"
+>&lt;/p>
+&lt;p>一路下一步，记得把 **CGI **勾选上，不要勾选 &lt;strong>ISAPI&lt;/strong>&lt;/p>
+&lt;p>等待安装过程&lt;/p>
+&lt;p>最后显示”安装成功 “，即大功告成。&lt;/p>
+&lt;p>&lt;img src="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-4.webp"
+width="392"
+height="301"
+srcset="https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-4_hu2d4b3df0c6388d552fbeed639fb6b611_10372_480x0_resize_q75_h2_box_2.webp 480w, https://blog.tinqin881.top/p/windows7-iis7-php-mysql/C1-4_hu2d4b3df0c6388d552fbeed639fb6b611_10372_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="C1-4"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>&lt;/p>
+&lt;h4 id="windows-10mysql-myini-与-windows7-不通用">Windows 10：MySQL my.ini 与 Windows7 不通用&lt;/h4>
+&lt;blockquote>
+&lt;p>Windows 7/8/10/2008R2 都使用了IIS7，使用及安装的方法几乎一致，但因为微软的老毛病，系统不同的情况下，Bug也会不同，这里大叔记录了一些安装其他系统时遇到一些情况记录。&lt;/p>
+&lt;/blockquote>
+&lt;p>MySQL的 &lt;strong>my.ini&lt;/strong> 文件，各个系统之间不能通用，所以在安装时，无法直接把Windows7的MySQL直接移植过去，大叔就重写了 &lt;strong>my.ini&lt;/strong> 就可以正常使用了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[WinMySQLAdmin]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Server&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;C:/Users/Administrator/***/***/***/mysql-5.7.16/bin/mysqld.exe&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">[client] &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">no-beep &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pipe &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># socket=mysql &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">3306 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[mysql]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">default-character-set&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">utf8 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># For advice on how to change settings please see &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># *** DO NOT EDIT THIS FILE. It&amp;#39;s a template which will be copied to the &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># *** default location during install, and will be replaced if you &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># *** upgrade to a newer version of MySQL. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">[mysqld] &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">explicit_defaults_for_timestamp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">TRUE&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Remove leading # and set to the amount of RAM for the most important data &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">innodb_buffer_pool_size&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">2G &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Remove leading # to turn on a very important data integrity option: logging &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># changes to the binary log between backups. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># log_bin &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># These are commonly set, remove the # and set as required. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#basedir=&amp;#34;C:\mysql-5.7.11-win32\&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">basedir&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;C:\Users\Administrator\***\***\***\mysql-5.7.16\&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#datadir=&amp;#34;C:\mysql-5.7.11-win32\data\&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">datadir&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;C:\Users\Administrator\***\***\***\mysql-5.7.16\data\&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">3306 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">server_id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">general-log&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">0 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">general_log_file&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;mysql_general.log&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">slow-query-log&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">slow_query_log_file&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;mysql_slow_query.log&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">long_query_time&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">10 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">log-error&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;mysql_error_log.err&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">default-storage-engine&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">INNODB &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">max_connections&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1024 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">query_cache_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">128M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">key_buffer_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">128M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">innodb_flush_log_at_trx_commit&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">1 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">innodb_thread_concurrency&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">128 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">innodb_autoextend_increment&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">128M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">tmp_table_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">128M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Remove leading # to set options mainly useful for reporting servers. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># The server defaults are faster for transactions and fast SELECTs. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Adjust sizes as needed, experiment to find the optimal values. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># join_buffer_size = 128M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sort_buffer_size = 2M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># read_rnd_buffer_size = 2M &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">sql-mode&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&amp;#34; &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">character-set-server&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">utf8 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">innodb_flush_method&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">normal&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">&amp;lt;/pre&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
