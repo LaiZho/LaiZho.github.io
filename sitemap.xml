@@ -119,14 +119,14 @@
 
   
   <url>
-    <loc>https://laizho.github.io/tags/Web/</loc>
+    <loc>https://laizho.github.io/tags/Win/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://laizho.github.io/tags/Win/</loc>
+    <loc>https://laizho.github.io/tags/Web/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -149,13 +149,6 @@
 
   
   <url>
-    <loc>https://laizho.github.io/categories/Web/</loc>
-    <lastmod>2024-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://laizho.github.io/categories/Windows/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -163,7 +156,7 @@
   </url>
   
   <url>
-    <loc>https://laizho.github.io/categories/Linux-Web/</loc>
+    <loc>https://laizho.github.io/categories/Web/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -171,6 +164,13 @@
   
   <url>
     <loc>https://laizho.github.io/categories/Linux/</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://laizho.github.io/categories/Linux-Web/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
