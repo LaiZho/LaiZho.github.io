@@ -1,4 +1,4 @@
-.github/workflows/pages.yml
+# .github/workflows/pages.yml
 name: Pages
 
 on:
