@@ -1,10 +1,10 @@
-.github/workflows/pages.yml
+# .github/workflows/pages.yml
 name: Pages
 
 on:
   push:
     branches:
-      - main # default branch
+      - hexo-blog
 
 jobs:
   build:
