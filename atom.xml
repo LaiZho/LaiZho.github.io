@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>12点半</title>
-  
+  <icon>https://laizho.github.io/img/icon-128x128.png</icon>
   <subtitle>半夜不怕鬼敲门</subtitle>
   <link href="https://laizho.github.io/atom.xml" rel="self"/>
   
   <link href="https://laizho.github.io/"/>
-  <updated>2024-08-03T11:07:39.270Z</updated>
+  <updated>2024-08-03T13:48:53.171Z</updated>
   <id>https://laizho.github.io/</id>
   
   <author>
@@ -17,13 +17,152 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Ubuntu安裝FishShell+Tide主題與各種插件</title>
+    <link href="https://laizho.github.io/uncategorized/8db49697/"/>
+    <id>https://laizho.github.io/uncategorized/8db49697/</id>
+    <published>2024-08-03T12:42:26.000Z</published>
+    <updated>2024-08-03T13:48:53.171Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;開頭&quot;&gt;&lt;a href=&quot;#開頭&quot; class=&quot;headerlink&quot; title=&quot;開頭&quot;&gt;&lt;/a&gt;開頭&lt;/h2&gt;&lt;p&gt;本篇文章會安裝以下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://fishshell.com/&quot;&gt;Fish</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CDN 缓存配置和其它配置实用优化</title>
+    <link href="https://laizho.github.io/Web/39758bc7/"/>
+    <id>https://laizho.github.io/Web/39758bc7/</id>
+    <published>2024-08-03T12:35:39.000Z</published>
+    <updated>2024-08-03T12:41:13.598Z</updated>
+    
+    
+    <summary type="html">CDN 加速静态资源时，将源站上的资源缓存到距离客户端最近的`CDN`节点上。当您访问该静态资源时，直接从缓存中获取，避免通过较长的链路回源，提高访问效率。</summary>
+    
+    
+    
+    <category term="Web" scheme="https://laizho.github.io/categories/Web/"/>
+    
+    
+    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sip 服务器（Freeswitch）屏蔽国外 IP</title>
+    <link href="https://laizho.github.io/Linux-Web/67a7fc07/"/>
+    <id>https://laizho.github.io/Linux-Web/67a7fc07/</id>
+    <published>2024-08-03T12:22:35.000Z</published>
+    <updated>2024-08-03T12:30:03.339Z</updated>
+    
+    
+    <summary type="html">SIP攻击很常见，特别是各大云服务器，基本上开了个公网IP绑定到实例机器就会被外国IP一遍怼。防范也容易，就是把外国IP禁掉。</summary>
+    
+    
+    
+    <category term="Linux,Web" scheme="https://laizho.github.io/categories/Linux-Web/"/>
+    
+    
+    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
+    
+    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Openbox 作为基底打造你自己的 Linux 桌面环境</title>
+    <link href="https://laizho.github.io/Linux/bd980760/"/>
+    <id>https://laizho.github.io/Linux/bd980760/</id>
+    <published>2024-08-03T11:37:34.000Z</published>
+    <updated>2024-08-03T12:21:25.418Z</updated>
+    
+    
+    <summary type="html">这篇文章会教你如何使用 Openbox 作为基底打造你自己的 Linux 桌面环境。</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://laizho.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nano 编辑器可以做些什么？</title>
+    <link href="https://laizho.github.io/Linux/e527aabb/"/>
+    <id>https://laizho.github.io/Linux/e527aabb/</id>
+    <published>2024-08-03T11:32:49.000Z</published>
+    <updated>2024-08-03T11:35:05.775Z</updated>
+    
+    
+    <summary type="html">终端下如果你不喜欢 Vim/Emacs 的话，Nano 是一个不错的选择，它是一个真正意义上的跨平台编辑器，基本上在所有 Linux 发行版上都默认自带 Nano，并且有 Windows 版本。</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://laizho.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>教程_Scoop:超好用的Windows包管理器</title>
+    <link href="https://laizho.github.io/Scoop-Windows/23e0cb97/"/>
+    <id>https://laizho.github.io/Scoop-Windows/23e0cb97/</id>
+    <published>2024-08-03T11:24:46.000Z</published>
+    <updated>2024-08-03T11:32:06.493Z</updated>
+    
+    
+    <summary type="html">Scoop 是一个 Win­dows 包管理工具，类似于 De­bian 的 `apt`、ma­cOS 的 `homebrew`。它由开源社区驱动，体验可能是是目前所有 Win­dows 包管理工具中最好的。对开发者来说，包管理器能非常方便的部署开发环境，比如 Python 、Node.js 。而对于像博主这样的普通的计算机使用者来说，可以方便的安装一些常用软件，尤其是开源软件，免去了手动去官网下载的繁琐步骤，而且后续对软件进行升级只需要输入一行命令，非常便捷。</summary>
+    
+    
+    
+    <category term="Scoop,Windows" scheme="https://laizho.github.io/categories/Scoop-Windows/"/>
+    
+    
+    <category term="Win" scheme="https://laizho.github.io/tags/Win/"/>
+    
+    <category term="Scoop" scheme="https://laizho.github.io/tags/Scoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>4 种实用方法：如何设置 Windows10/11 自动登录</title>
+    <link href="https://laizho.github.io/Windows/21f09687/"/>
+    <id>https://laizho.github.io/Windows/21f09687/</id>
+    <published>2024-08-03T11:17:52.000Z</published>
+    <updated>2024-08-03T11:24:10.392Z</updated>
+    
+    
+    <summary type="html">当启动 Windows PC 时，登录界面会列出一个或多个用户账户。你需要选择一个账户并通过身份验证才能进入桌面。Windows 支持多种登录验证方式，如密码和Windows Hello，这对于多用户设备来说会十分便利。</summary>
+    
+    
+    
+    <category term="Windows" scheme="https://laizho.github.io/categories/Windows/"/>
+    
+    
+    <category term="Win" scheme="https://laizho.github.io/tags/Win/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在 Ubuntu 上安装和使用 Flatpak</title>
     <link href="https://laizho.github.io/Linux/49383a15/"/>
     <id>https://laizho.github.io/Linux/49383a15/</id>
     <published>2024-08-03T10:59:31.000Z</published>
     <updated>2024-08-03T11:07:39.270Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>Ubuntu 可能默认安装了 Snap，但你仍然可以使用 Flatpak 通用软件包。</p></blockquote><p>Linux 世界有三种“通用”打包格式，允许在“任何” Linux 发行版上运行：Snap、Flatpak 和 AppImage。</p><p>Ubuntu 内置了 Snap，但大多数发行版和开发人员都避免使用它，因为它的闭源性质。他们更喜欢 <a href="https://itsfoss.com/what-is-flatpak/">Fedora 的 Flatpak 打包系统</a>。</p><p>作为 Ubuntu 用户，你并不局限于 Snap。你还可以在 Ubuntu 系统上使用 Flatpak。</p><p>在本教程中，我将讨论以下内容：</p><ul><li>在 Ubuntu 上启用 Flatpak 支持</li><li>使用 Flatpak 命令来管理包</li><li>从 Flathub 获取包</li><li>将 Flatpak 软件包添加到软件中心</li></ul><p>听起来很令人兴奋？ 让我们一一看看。</p><h3 id="在-Ubuntu-上安装-Flatpak"><a href="#在-Ubuntu-上安装-Flatpak" class="headerlink" title="在 Ubuntu 上安装 Flatpak"></a>在 Ubuntu 上安装 Flatpak</h3><p>你可以使用以下命令轻松安装 Flatpak：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install flatpak<br></code></pre></td></tr></table></figure><p>对于 <strong>Ubuntu 18.04 或更早版本</strong>，请使用 PPA：</p><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">sudo<span class="hljs-built_in"> add-apt-repository </span>ppa:flatpak/stablesudo apt updatesudo apt install flatpak<br></code></pre></td></tr></table></figure><h4 id="添加-Flathub-仓库"><a href="#添加-Flathub-仓库" class="headerlink" title="添加 Flathub 仓库"></a>添加 Flathub 仓库</h4><p>你已在 Ubuntu 系统中安装了 Flatpak 支持。但是，如果你尝试安装 Flatpak 软件包，你将收到 <a href="https://itsfoss.com/no-remote-ref-found-flatpak/">“No remote refs found”</a> 错误。这是因为没有添加 Flatpak 仓库，因此 Flatpak 甚至不知道应该从哪里获取应用。</p><p>Flatpak 有一个名为 “Flathub” 的集中仓库，可以从此处找到并下载许多 Flatpak 应用。</p><p>你应该添加 Flathub 仓库来访问这些应用。</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">flatpak remote-add --<span class="hljs-keyword">if</span>-<span class="hljs-keyword">not</span>-exists flathub https:<span class="hljs-comment">//flathub.org/repo/flathub.flatpakrepo</span><br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230051f1l2wqiwlcxpyivw.svg" alt="Install Flatpak in latest versions of Ubuntu and then add Flathub repo"></p><p><em>Install Flatpak in latest versions of Ubuntu and then add Flathub repo</em></p><p>安装并配置 Flatpak 后，<strong>重启你的系统</strong>。否则，已安装的 Flatpak 应用将不会在你的系统菜单上可见。</p><p>不过，你始终可以通过运行以下命令来运行 Flatpak 应用：</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">flatpak <span class="hljs-built_in">run</span> &lt;package-name&gt;<br></code></pre></td></tr></table></figure><h3 id="常用-Flatpak-命令"><a href="#常用-Flatpak-命令" class="headerlink" title="常用 Flatpak 命令"></a>常用 Flatpak 命令</h3><p>现在你已经安装了 Flatpak 打包支持，是时候学习包管理所需的一些最常见的 Flatpak 命令了。</p><h4 id="搜索包"><a href="#搜索包" class="headerlink" title="搜索包"></a>搜索包</h4><p>如果你知道应用名称，请使用 Flathub 网站或使用以下命令：</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">flatpak <span class="hljs-keyword">search</span> &lt;package-<span class="hljs-type">name</span>&gt;<br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230051kcig3cgzrmio87zr.svg" alt="Search for a package using Flatpak Search command"></p><p><em>Search for a package using Flatpak Search command</em></p><blockquote><p>🚧 除了搜索 Flatpak 包之外，在其他情况下， 指的是正确的 Flatpak 包名称，例如 <code>com.raggesilver.BlackBox</code>（上面截图中的应用 ID）。你还可以使用应用 ID 的最后一个词 <code>Blackbox</code>。</p></blockquote><h4 id="安装-Flatpak-包"><a href="#安装-Flatpak-包" class="headerlink" title="安装 Flatpak 包"></a>安装 Flatpak 包</h4><p>以下是安装 Flatpak 包的语法：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">flatpak install <span class="hljs-tag">&lt;<span class="hljs-name">remote-repo</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">package-name</span>&gt;</span><br></code></pre></td></tr></table></figure><p>由于几乎所有时候你都会从 Flathub 获取应用，因此远程仓库将是 <code>flathub</code>：</p><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">flatpak install flathub &lt;<span class="hljs-keyword">package</span>-name&gt;<br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230051fhqi8sggp4tgsing.svg" alt="Install a package after searching for its name"></p><p><em>Install a package after searching for its name</em></p><p>在极少数情况下，你可以直接从开发人员的仓库安装 Flatpak 包，而不是 Flathub。在这种情况下，你可以使用如下语法：</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">flatpak install --<span class="hljs-keyword">from</span> https:<span class="hljs-comment">//flathub.org/repo/appstream/com.spotify.Client.flatpakref</span><br></code></pre></td></tr></table></figure><h4 id="从-flatpakref-安装包"><a href="#从-flatpakref-安装包" class="headerlink" title="从 flatpakref 安装包"></a>从 flatpakref 安装包</h4><p>这是可选的，也很少见。但有时，你会获得应用的 <code>.flatpakref</code> 文件。这<strong>不是离线安装</strong>。.flatpakref 包含有关从何处获取包的必要详细信息。</p><p>要从此类文件安装，请打开终端并运行：</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">flatpak install &lt;path-<span class="hljs-keyword">to</span>-flatpakref <span class="hljs-built_in">file</span>&gt;<br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230052um1hkeotfzcxx10x.svg" alt="Install a Flatpak package from Flatpakref file"></p><p><em>Install a Flatpak package from Flatpakref file</em></p><h4 id="从终端运行-Flatpak-应用"><a href="#从终端运行-Flatpak-应用" class="headerlink" title="从终端运行 Flatpak 应用"></a>从终端运行 Flatpak 应用</h4><p>再说一遍，这是你不会经常做的事情。大多数情况下，你将在系统菜单中搜索安装应用并从那里运行该应用。</p><p>但是，你也可以使用以下命令从终端运行它们：</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">flatpak <span class="hljs-built_in">run</span> &lt;package-name&gt;<br></code></pre></td></tr></table></figure><h4 id="列出已安装的-Flatpak-软件包"><a href="#列出已安装的-Flatpak-软件包" class="headerlink" title="列出已安装的 Flatpak 软件包"></a>列出已安装的 Flatpak 软件包</h4><p>想要查看你的系统上安装了哪些 Flatpak 应用？ 像这样列出它们：</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">flatpak list</span><br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230052lfssbnuia7dxxmxj.svg" alt="List all the installed Flatpak packages on your system"></p><p><em>List all the installed Flatpak packages on your system</em></p><h4 id="卸载-Flatpak-包"><a href="#卸载-Flatpak-包" class="headerlink" title="卸载 Flatpak 包"></a>卸载 Flatpak 包</h4><p>你可以通过以下方式删除已安装的 Flatpak 包：</p><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">flatpak uninstall &lt;<span class="hljs-keyword">package</span>-name&gt;<br></code></pre></td></tr></table></figure><p>如果你想<strong>清除不再需要的剩余包和运行时</strong>，请使用：</p><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">flatpak uninstall <span class="hljs-comment">--unused</span><br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230052obp5gbxy33pzhph7.svg" alt="Remove a Flatpak package and later, if there is any unused runtimes or packages, remove them"></p><p><em>Remove a Flatpak package and later, if there is any unused runtimes or packages, remove them</em></p><p>它可能会帮助你 <a href="https://itsfoss.com/free-up-space-ubuntu-linux/">在 Ubuntu 上节省一些磁盘空间</a>。</p><h3 id="Flatpak-命令总结"><a href="#Flatpak-命令总结" class="headerlink" title="Flatpak 命令总结"></a>Flatpak 命令总结</h3><p>以下是你在上面学到的命令的快速摘要：</p><table><thead><tr><th>用途</th><th>命令</th></tr></thead><tbody><tr><td>搜索包</td><td><code>flatpak search</code></td></tr><tr><td>安装包</td><td><code>flatpak install</code></td></tr><tr><td>列出已安装的包</td><td><code>flatpak list</code></td></tr><tr><td>从 flatpakref 安装</td><td><code>flatpak install &lt;package-name.flatpakref&gt;</code></td></tr><tr><td>卸载软件包</td><td><code>flatpak uninstall</code></td></tr><tr><td>卸载未使用的运行时和包</td><td><code>flatpak uninstall --unused</code></td></tr></tbody></table><h3 id="使用-Flathub-探索-Flatpak-包"><a href="#使用-Flathub-探索-Flatpak-包" class="headerlink" title="使用 Flathub 探索 Flatpak 包"></a>使用 Flathub 探索 Flatpak 包</h3><p>我知道通过命令行搜索 Flatpak 包并不是最好的体验，这就是 <a href="https://flathub.org/en-GB">Flathub 网站</a> 的用武之地。</p><p>你可以在 Flathub 上浏览 Flatpak 应用，它提供了更多详细信息，例如经过验证的发布商、下载总数等。</p><p>你还将在应用页面底部获得安装应用所需的命令。</p><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230052e8mfr77mfpkonmqn.png" alt="img"></p><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230053yqkbxk1zf0v8bv87.png" alt="img"></p><h3 id="额外信息：使用支持-Flatpak-软件包的软件中心"><a href="#额外信息：使用支持-Flatpak-软件包的软件中心" class="headerlink" title="额外信息：使用支持 Flatpak 软件包的软件中心"></a>额外信息：使用支持 Flatpak 软件包的软件中心</h3><p>你可以将 Flatpak 包添加到 GNOME 软件中心，并使用它以图形方式安装软件包。</p><p>有一个专用插件可以将 Flatpak 添加到 GNOME 软件中心。</p><blockquote><p>🚧 从 Ubuntu 20.04 开始，Ubuntu 默认的软件中心是 Snap Store，并且不支持 Flatpak 集成。因此，安装以下软件包将产生两个软件中心：一个 Snap 和另一个 DEB。</p></blockquote><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230053bm51mdp57m2x6wup.png" alt="When you install GNOME Software Flatpak plugin in Ubuntu, a DEB version of GNOME Software is installed. So you will have two software center application"></p><p><em>When you install GNOME Software Flatpak plugin in Ubuntu, a DEB version of GNOME Software is installed. So you will have two software center application</em></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install gnome-software-plugin-flatpak<br></code></pre></td></tr></table></figure><p><img src="/./../images/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8Flatpak/230054zfkgooqclhyfptrp.svg" alt="Installing GNOME Software Plugin in Ubuntu"></p><p><em>Installing GNOME Software Plugin in Ubuntu</em></p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>你在这里学到了很多东西。你学习了在 Ubuntu 中启用 Flatpak 支持并通过命令行管理 Flatpak 软件包。你还了解了与软件中心的集成。</p><p>我希望你现在对 Flatpaks 感觉更舒服一些。既然你发现了三个通用软件包之一，那么再 <a href="https://itsfoss.com/use-appimage-linux/">了解一下 Appimages</a> 怎么样？</p><p>如果你有疑问或遇到任何问题，请告诉我。</p>]]></content>
     
     
     <summary type="html">Linux 世界有三种“通用”打包格式，允许在“任何” Linux 发行版上运行：Snap、Flatpak 和 AppImage。</summary>
@@ -42,9 +181,7 @@
     <link href="https://laizho.github.io/Web/eb9d0ae5/"/>
     <id>https://laizho.github.io/Web/eb9d0ae5/</id>
     <published>2024-08-03T10:43:46.000Z</published>
-    <updated>2024-08-03T11:07:29.588Z</updated>
-    
-    <content type="html"><![CDATA[<p>CSDN现在广告满天飞，且很多博客需要先关注才能复制，非常令人无语。如果每次用Google搜索的时候都要加上”-csdn”选项，就非常麻烦。有没有更方便的办法呢？我们可以利用Chrome的uBlacklist插件。</p><p>首先，在Google应用商店中搜索并安装uBlacklist：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216030416_ublacklist%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97.png" alt="img">]</p><p>安装后，进入”扩展程序选项”界面，将csdn的网址加入屏幕黑名单，然后点击保存：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216031007_%E9%BB%91%E5%90%8D%E5%8D%95.png" alt="img">]</p><p>如果你要在其他搜索引擎中屏蔽，还可以在下面的选项中打钩：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216031218_%E5%85%B6%E5%AE%83%E5%BC%95%E6%93%8E.png" alt="img">]</p><p>然后我们搜索一个很常见的报错，可以看到ublacklist已经帮我们屏蔽掉了一个结果：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216031750_pingbi.png" alt="img">]</p><p>我们点击“显示”，发现该结果正是来自CSDN:</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216032012_csdn.png" alt="img">]</p><p>如果我们想要彻底屏蔽掉，也就是连“uBlacklist已经屏蔽了1个网站”这个信息都不显示，可以回到“扩展程序选项界面”，将下列选项打钩：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_0c40283c.png" alt="img">]</p><p>这样，任何提示信息都不会显示了：</p><p>[<img src="/./../images/Chrome%EF%BC%9A%E7%94%A8uBlacklist%E5%B1%8F%E8%94%BDCSDN%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/o_220216032948_final.png" alt="img">]</p>]]></content>
+    <updated>2024-08-03T12:20:19.972Z</updated>
     
     
     <summary type="html">CSDN现在广告满天飞，且很多博客需要先关注才能复制，非常令人无语。如果每次用Google搜索的时候都要加上&quot;-csdn&quot;选项，就非常麻烦。有没有更方便的办法呢？我们可以利用Chrome的uBlacklist插件。</summary>
@@ -65,8 +202,6 @@
     <published>2024-08-03T10:28:44.000Z</published>
     <updated>2024-08-03T10:39:08.329Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>通过微调 1Panel面板PHP构建文件，可以为扩展编译增加更多的支持。<br>省去自己构建麻烦</p></blockquote><h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>1Panel的PHP构建目录在 <code>/opt/1panel/runtime/php/</code> 目录下。</p><p>以我的 1Panel社区版：v1.10.5-lts PHP：8.2.15 举例。</p><p>进入以下目录：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /opt/1panel/runtime/php/PHP82_15/php/extensions<br></code></pre></td></tr></table></figure><p>修改目录下的的 <code>install.sh</code> 文件。</p><p>搜索 <code>Install gd</code> ，找到判断GD扩展那一行。</p><p>我的在228行</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-keyword">if</span> [[ -z <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;EXTENSIONS##*,gd,*&#125;</span>&quot;</span> ]]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;---------- Install gd ----------&quot;</span><br>    isPhpVersionGreaterOrEqual 8 0<br><br>    <span class="hljs-keyword">if</span> [[ <span class="hljs-string">&quot;$?&quot;</span> = <span class="hljs-string">&quot;1&quot;</span> ]]; <span class="hljs-keyword">then</span><br>        <span class="hljs-comment"># &quot;--with-xxx-dir&quot; was removed from php 7.4,</span><br>        <span class="hljs-comment"># issue: https://github.com/docker-library/php/issues/912</span><br>        options=<span class="hljs-string">&quot;--with-freetype --with-jpeg --with-webp&quot;</span><br>    <span class="hljs-keyword">else</span><br>        options=<span class="hljs-string">&quot;--with-gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/&quot;</span><br>    <span class="hljs-keyword">fi</span><br><br>    apk add --no-cache \<br>        freetype \<br>        freetype-dev \<br>        libpng \<br>        libpng-dev \<br>        libjpeg-turbo \<br>        libjpeg-turbo-dev \<br>libwebp-dev \<br>    &amp;&amp; docker-php-ext-configure gd <span class="hljs-variable">$&#123;options&#125;</span> \<br>    &amp;&amp; docker-php-ext-install <span class="hljs-variable">$&#123;MC&#125;</span> gd \<br>    &amp;&amp; apk del \<br>        freetype-dev \<br>        libpng-dev \<br>        libjpeg-turbo-dev<br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure><p>修改最上面的 options。</p><p>增加 <code>--with-avif</code> ，使用AVIF支持进行编译</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">// old<br>options=<span class="hljs-string">&quot;--with-freetype --with-jpeg --with-webp&quot;</span><br><br>// new<br>options=<span class="hljs-string">&quot;--with-freetype --with-jpeg --with-webp --with-avif&quot;</span><br></code></pre></td></tr></table></figure><p>修改 apk add –no-cache 内部一行</p><p>在 freetype 和 libwebp-dev 中间添加 <code>libavif-dev</code>。</p><p>GD 扩展依赖于 libavif 软件包，以提供底层 AVIF 解码。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sh">   apk add --no-cache \<br>       freetype \<br>       freetype-dev \<br>       libpng \<br>       libpng-dev \<br>       libavif-dev \<br>       libjpeg-turbo \<br>       libjpeg-turbo-dev \<br>libwebp-dev \<br>   &amp;&amp; docker-php-ext-configure gd <span class="hljs-variable">$&#123;options&#125;</span> \<br>   &amp;&amp; docker-php-ext-install <span class="hljs-variable">$&#123;MC&#125;</span> gd \<br>   &amp;&amp; apk del \<br>       freetype-dev \<br>       libpng-dev \<br>       libjpeg-turbo-dev<br></code></pre></td></tr></table></figure><p>在 1Panel面板 运行环境 重建PHP应用</p><h3 id="备选方案"><a href="#备选方案" class="headerlink" title="备选方案"></a>备选方案</h3><p>理论上修改了构建命令，docker的缓存会失效，如果依然秒编译完成可以尝试手动清理全部缓存</p><p><a href="https://docs.docker.com/reference/cli/docker/builder/prune/">https://docs.docker.com/reference/cli/docker/builder/prune/</a></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker builder prune -a<br>y<br></code></pre></td></tr></table></figure><p>如果依然不行可能新版构建目录换了地方</p><h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>完成后可以在 phpinfo(); 查看GD扩展多出了 AVIF 支持</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">AVIF Supportenabled<br></code></pre></td></tr></table></figure>]]></content>
-    
     
     <summary type="html">通过微调 1Panel面板PHP构建文件，可以为扩展编译增加更多的支持，省去自己构建麻烦</summary>
     
@@ -80,18 +215,19 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
+    <title>你好世界！</title>
     <link href="https://laizho.github.io/uncategorized/4a17b156/"/>
     <id>https://laizho.github.io/uncategorized/4a17b156/</id>
     <published>2024-08-02T16:46:21.318Z</published>
-    <updated>2024-08-03T09:52:15.610Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <updated>2024-08-03T11:36:24.994Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
       
     
     
