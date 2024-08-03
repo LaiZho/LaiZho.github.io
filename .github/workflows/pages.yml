@@ -4,7 +4,7 @@ name: Pages
 on:
   push:
     branches:
-      - hexo-blog
+      - hexo-source
 
 jobs:
   build:
