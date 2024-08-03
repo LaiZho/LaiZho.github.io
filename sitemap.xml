@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://laizho.github.io/uncategorized/8db49697/</loc>
+    <loc>https://laizho.github.io/Linux-Shell/8db49697/</loc>
     
     <lastmod>2024-08-03</lastmod>
     
@@ -119,14 +119,14 @@
 
   
   <url>
-    <loc>https://laizho.github.io/tags/Win/</loc>
+    <loc>https://laizho.github.io/tags/Web/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://laizho.github.io/tags/Web/</loc>
+    <loc>https://laizho.github.io/tags/Win/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -149,13 +149,6 @@
 
   
   <url>
-    <loc>https://laizho.github.io/categories/Windows/</loc>
-    <lastmod>2024-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://laizho.github.io/categories/Web/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -163,7 +156,21 @@
   </url>
   
   <url>
+    <loc>https://laizho.github.io/categories/Windows/</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://laizho.github.io/categories/Linux/</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://laizho.github.io/categories/Linux-Shell/</loc>
     <lastmod>2024-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

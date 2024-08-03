@@ -6,7 +6,7 @@
   <link href="https://laizho.github.io/atom.xml" rel="self"/>
   
   <link href="https://laizho.github.io/"/>
-  <updated>2024-08-03T13:58:52.407Z</updated>
+  <updated>2024-08-03T14:23:11.713Z</updated>
   <id>https://laizho.github.io/</id>
   
   <author>
@@ -18,24 +18,20 @@
   
   <entry>
     <title>Ubuntu安裝FishShell+Tide主題與各種插件</title>
-    <link href="https://laizho.github.io/uncategorized/8db49697/"/>
-    <id>https://laizho.github.io/uncategorized/8db49697/</id>
+    <link href="https://laizho.github.io/Linux-Shell/8db49697/"/>
+    <id>https://laizho.github.io/Linux-Shell/8db49697/</id>
     <published>2024-08-03T12:42:26.000Z</published>
-    <updated>2024-08-03T13:58:52.407Z</updated>
+    <updated>2024-08-03T14:23:11.713Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;開頭&quot;&gt;&lt;a href=&quot;#開頭&quot; class=&quot;headerlink&quot; title=&quot;開頭&quot;&gt;&lt;/a&gt;開頭&lt;/h2&gt;&lt;p&gt;本篇文章會安裝以下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://fishshell.com/&quot;&gt;Fish</summary>
-        
-      
+    <summary type="html">安裝完，你會得到一個簡單好上手的指令介面。</summary>
     
     
     
+    <category term="Linux,Shell" scheme="https://laizho.github.io/categories/Linux-Shell/"/>
+    
+    
+    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
     
   </entry>
   
