@@ -1,10 +1,9 @@
-# .github/workflows/pages.yml
 name: Pages
 
 on:
   push:
     branches:
-      - hexo-source
+      - main
 
 jobs:
   build:
