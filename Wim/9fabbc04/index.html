@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon-128x128.png">
+  <link rel="icon" href="/img/icon-128x128.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="将 DISM 与 INF 样式驱动程序配合使用，以便对联机或脱机 Windows 映像 (.wim) 执行添加、删除或列出驱动程序的操作。 不支持 Microsoft Windows 安装程序或其他驱动程序包类型（例如 .exe 文件）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DISM 驱动程序维护 (.inf) 命令行选项">
+<meta property="og:url" content="https://blog.tinqin881.top/Wim/9fabbc04/index.html">
+<meta property="og:site_name" content="12点半">
+<meta property="og:description" content="将 DISM 与 INF 样式驱动程序配合使用，以便对联机或脱机 Windows 映像 (.wim) 执行添加、删除或列出驱动程序的操作。 不支持 Microsoft Windows 安装程序或其他驱动程序包类型（例如 .exe 文件）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-04T14:09:44.000Z">
+<meta property="article:modified_time" content="2024-08-04T14:31:55.543Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Dism">
+<meta property="article:tag" content="Wim">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>DISM 驱动程序维护 (.inf) 命令行选项 - 12点半</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.tinqin881.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="12点半" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>12点半</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loliapi.com/acg/pc/') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DISM 驱动程序维护 (.inf) 命令行选项"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-04 22:09" pubdate>
+          2024年8月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DISM 驱动程序维护 (.inf) 命令行选项</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>将 DISM 与 INF 样式驱动程序配合使用，以便对联机或脱机 Windows 映像 (.wim) 执行添加、删除或列出驱动程序的操作。 不支持 Microsoft Windows 安装程序或其他驱动程序包类型（例如 .exe 文件）。</p>
+<p>可以指定驱动程序 INF 文件所在的目录，也可以通过指定 INF 文件的名称指向某个驱动程序。</p>
+<p>使用 DISM 来维护 Windows 映像的基本语法为：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">DISM.exe &#123;/Image:&lt;path_to_ image_directory&gt; | /Online&#125; [dism_global_options] &#123;servicing_option&#125; [&lt;servicing_argument&gt;]<br></code></pre></td></tr></table></figure>
+
+<p>可对脱机映像使用以下驱动程序维护选项。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">DISM.exe /image:&lt;path_to_image_directory&gt; [/Get-Drivers | /Get-DriverInfo | /Add-Driver | /Remove-Driver | /Export-Driver]<br></code></pre></td></tr></table></figure>
+
+<p>可对正在运行的操作系统使用以下驱动程序维护选项。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">DISM.exe /Online [/Get-Drivers | /Get-DriverInfo | /Export-Driver]<br></code></pre></td></tr></table></figure>
+
+<h2 id="Get-Help"><a href="#Get-Help" class="headerlink" title="&#x2F;Get-Help &#x2F;?"></a>&#x2F;Get-Help &#x2F;?</h2><p>在驱动程序维护命令行选项之后立即使用时，将显示有关选项和参数的信息。 指定映像后，其他主题可能会变得可用。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Add-Driver /?<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">&lt;p&gt;&lt;strong&gt;Dism /online /Get-Drivers /?<br></code></pre></td></tr></table></figure>
+
+<h2 id="Get-Drivers"><a href="#Get-Drivers" class="headerlink" title="&#x2F;Get-Drivers"></a>&#x2F;Get-Drivers</h2><p>显示有关联机或脱机映像中的驱动程序包的基本信息。</p>
+<p>默认情况下，将仅列出第三方驱动程序。 使用 <code>/all</code> 参数显示有关默认驱动程序和第三方驱动程序的信息。 使用<code>/Format:Table</code> 或 <code>/Format:List</code> 或参数将输出显示为表格或列表。</p>
+<p>如果指向映像，可以确定映像中的具体驱动程序，以及驱动程序（已安装的或暂存的）的状态。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Get-Drivers<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /online /Get-Drivers<br></code></pre></td></tr></table></figure>
+
+<h2 id="Get-DriverInfo"><a href="#Get-DriverInfo" class="headerlink" title="&#x2F;Get-DriverInfo"></a>&#x2F;Get-DriverInfo</h2><p>显示有关特定驱动程序包的详细信息。</p>
+<p>语法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/Get-DriverInfo /Driver:&#123;&lt;installed_INF_FileName&gt;|&lt;path_to_driver.inf&gt;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以指向映像中安装的 INF 文件或尚未安装的 INF 文件。 可以在设备驱动程序存储中指定卸载的驱动程序或第三方驱动程序的名称。 驱动程序存储中已安装的第三方驱动程序将命名为 <code>Oem0.inf</code>、<code>Oem1.inf</code> 等。 这称为已发布的名称。</p>
+<p>可以通过多次使用 <code>/driver</code> 选项在命令行中指定多个驱动程序。</p>
+<p>示例：使用 <code>/Get-Drivers</code> 选项，以便可以标识驱动程序 INF 文件。 然后运行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Get-DriverInfo /driver:C:\Drivers\usb.inf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /online /Get-DriverInfo /driver:C:\test\drivers\usb\usb.inf<br></code></pre></td></tr></table></figure>
+
+<h2 id="Add-Driver"><a href="#Add-Driver" class="headerlink" title="&#x2F;Add-Driver"></a>&#x2F;Add-Driver</h2><p>将第三方驱动程序包添加到脱机 Windows 映像。</p>
+<p>语法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/Add-Driver &#123;/Driver:&lt;folder_containing_INF&gt; | /Driver:&lt;path_to_driver.inf&gt;&#125; [/recurse] [/ForceUnsigned]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>/Driver</code> 可以指向文件夹或单个 .inf 文件。</p>
+<ul>
+<li>使用 <code>/Driver</code> 选项指向文件夹时，将忽略属于无效驱动程序包的 INF 文件。 运行此命令时，这些文件在控制台上报告，日志文件中包含警告。 你不会收到错误消息。</li>
+<li>如果指向某个路径并使用 <code>/Recurse</code> 选项，将查询所有子文件夹，以获取要添加的驱动程序。</li>
+</ul>
+</li>
+<li><p>若要进行测试，可以使用 <code>/ForceUnsigned</code> 来添加未签名的驱动程序并重写安装在基于 X64 的计算机上的驱动程序必须具有数字签名的要求。 有关驱动程序签名要求的详细信息，请参阅<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/device-drivers-and-deployment-overview?view=windows-11">设备驱动程序和部署概述</a>。</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Add-Driver /driver:C:\test\drivers&lt;/strong&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Add-Driver /driver:C:\test\drivers /recurse<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Add-Driver /driver:C:\test\drivers\mydriver.inf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Add-Driver /driver:C:\test\drivers\mydriver.inf /ForceUnsigned<br></code></pre></td></tr></table></figure>
+
+<h2 id="Remove-Driver"><a href="#Remove-Driver" class="headerlink" title="&#x2F;Remove-Driver"></a>&#x2F;Remove-Driver</h2><p>从脱机映像中删除第三方驱动程序。</p>
+<p>可以通过多次使用 <code>/Driver</code> 选项在命令行中指定多个驱动程序。</p>
+<p>语法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/Remove-Driver /Driver:&lt;driver_file&gt;<br></code></pre></td></tr></table></figure>
+
+<p>将第三方驱动程序添加到映像时，它们会被重命名为已发布的名称，如 <code>Oem0.inf</code>、<code>Oem1.inf</code> 等。 必须指定已发布的名称以删除驱动程序。 无法删除默认驱动程序。</p>
+<p> 警告</p>
+<p>删除启动关键型驱动程序包可能会使脱机 Windows 映像无法启动。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image:C:\test\offline /Remove-Driver /driver:oem1.inf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /image: C:\test\offline /Remove-Driver /driver:oem1.inf /driver:oem2.inf<br></code></pre></td></tr></table></figure>
+
+<h2 id="Export-Driver"><a href="#Export-Driver" class="headerlink" title="&#x2F;Export-Driver"></a>&#x2F;Export-Driver</h2><p>将所有第三方驱动程序包从 Windows 映像导出到目标路径。 然后，可以通过运行 <code>DISM Add-Driver</code> 命令将导出的驱动程序注入到脱机映像。</p>
+<p>语法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Export-Driver /Destination:&lt;destination_path&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Destination</code> 是将要保存导出的驱动程序的位置。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">DISM /Online /Export-Driver /Destination:C:\destpath<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">DISM /Image:C\test\offline /Export-Driver /Destination:C:\destpath<br></code></pre></td></tr></table></figure>
+
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><ul>
+<li><p>驱动程序维护命令仅支持 .inf 文件。 不支持 Windows 安装程序或其他驱动程序包类型（例如 .exe 文件）。</p>
+</li>
+<li><p>驱动程序按照它们在命令行中的列出顺序进行安装。 在以下示例中，将依次安装 1.inf、2.inf 和 3.inf，这也是它们在命令行中的列出顺序。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">Dism /Image:C:\test\offline /Add-Driver /Driver:C:\test\drivers\<span class="hljs-number">1</span>.inf /Driver:C:\test\drivers\<span class="hljs-number">2</span>.inf /Driver:C:\test\drivers\<span class="hljs-number">3</span>.inf<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Wim/" class="category-chain-item">Wim</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Dism/" class="print-no-link">#Dism</a>
+      
+        <a href="/tags/Wim/" class="print-no-link">#Wim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Wim/8ef5f3d7/" title="Sysprep 命令行选项">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Sysprep 命令行选项</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Wim/cd1d84dc/" title="DISM 预配包 (.ppkg) 命令行选项">
+                        <span class="hidden-mobile">DISM 预配包 (.ppkg) 命令行选项</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23li0kgQjtCqwFNwS4","clientSecret":"821f4ac10413f179966ab494641606756fb8a361","repo":"hexoBlogLaiZho","owner":"LaiZho","admin":["LaiZho"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'cd25330a06a5127210334e834836d0c2'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://laizho.github.io/atom.xml" target="_blank" rel="nofollow noopener"><i class="iconfont icon-rss"></i>RSS</a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      渝ICP备19013968号
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+
+</body>
+</html>

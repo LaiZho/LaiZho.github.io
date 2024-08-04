@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon-128x128.png">
+  <link rel="icon" href="/img/icon-128x128.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="打开Windows系统的磁盘管理，你可能会在硬盘上发现一个或若干个特殊分区，他们一般都带有特殊的标记，并且通常都具有隐藏属性，比如，OEM分区、恢复分区皆如此。那么这些分区是靠什么表现出特殊属性的呢？而我们又能不能改变这些属性呢？本文就来详细解释这个问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MBR &amp; GPT 硬盘分区类型&amp;属性详解（Win 下更改&#x2F;设置 OEM&#x2F;恢复分区方法）">
+<meta property="og:url" content="https://blog.tinqin881.top/Wim/4a6f0b8d/index.html">
+<meta property="og:site_name" content="12点半">
+<meta property="og:description" content="打开Windows系统的磁盘管理，你可能会在硬盘上发现一个或若干个特殊分区，他们一般都带有特殊的标记，并且通常都具有隐藏属性，比如，OEM分区、恢复分区皆如此。那么这些分区是靠什么表现出特殊属性的呢？而我们又能不能改变这些属性呢？本文就来详细解释这个问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-1.gif">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-2.gif">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-3.gif">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-1.gif">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-2.gif">
+<meta property="og:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-3.gif">
+<meta property="article:published_time" content="2024-08-04T14:22:54.000Z">
+<meta property="article:modified_time" content="2024-08-04T14:35:00.277Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Wim">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.tinqin881.top/images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-1.gif">
+  
+  
+  
+  <title>MBR &amp; GPT 硬盘分区类型&amp;属性详解（Win 下更改/设置 OEM/恢复分区方法） - 12点半</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.tinqin881.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="12点半" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>12点半</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loliapi.com/acg/pc/') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MBR &amp; GPT 硬盘分区类型&amp;属性详解（Win 下更改/设置 OEM/恢复分区方法）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-04 22:22" pubdate>
+          2024年8月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MBR &amp; GPT 硬盘分区类型&amp;属性详解（Win 下更改/设置 OEM/恢复分区方法）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>打开Windows系统的磁盘管理，你可能会在硬盘上发现一个或若干个特殊分区，他们一般都带有特殊的标记，并且通常都具有隐藏属性，比如，OEM分区、恢复分区皆如此。那么这些分区是靠什么表现出特殊属性的呢？而我们又能不能改变这些属性呢？本文就来详细解释这个问题。</p>
+<blockquote>
+<p>为方便理解本文内容，建议先阅读《<a target="_blank" rel="noopener" href="https://blogs.iapplee.com/what-is-gpt-and-what-is-uefi/">UEFI+GPT引导基础篇（一）：什么是GPT，什么是UEFI？</a>》一文，这篇文章简单介绍了MBR和GPT硬盘分区原理，告诉我们硬盘上各分区的相关信息都存储在各自的分区表中：MBR硬盘分区信息存储在MBR分区表中；而GPT硬盘分区信息则存储在GPT分区表中，除此之外，GPT硬盘还包含一个PMBR分区表。<strong>本文下面要讲到的东西可以看作是对这些内容的一点扩展，它捎带回答了这两个问题：</strong></p>
+<p><strong>1、</strong>GPT硬盘中存在PMBR分区表和GPT分区表，那么系统凭借什么将其识别为GPT硬盘？<br><strong>2、</strong>我们还知道，MBR硬盘也可以实现UEFI引导，那么其用于实现引导的分区（FAT32分区）是不是也有像GPT硬盘中的“EFI系统分区”这样鲜明的标志？</p>
+</blockquote>
+<p><strong>MBR硬盘和GPT硬盘使用不同的分区规则，我们先来看MBR硬盘。</strong></p>
+<p>MBR硬盘的MBR分区表中包含了硬盘上各主分区的分区信息，每个分区信息中都有一段内容（1字节，即8位）用来表示分区类型。可以<a target="_blank" rel="noopener" href="http://www.win.tue.nl/~aeb/partitions/partition_types-1.html">在这里查看分区类型列表</a>（十六进制表示）。<strong>Windows下可识别的分区类型主要有：</strong></p>
+<p>0x42 表示LDM数据分区<br>0x27 表示恢复分区（WinRE分区、Acer等系统备份分区）。<br>0x07 表示普通分区（Windows分区、数据分区。默认分区类型。）<br>0x12 表示OEM分区（康柏、IBM Thinkpad）。<br>0x84 表示OEM分区（Intel Rapid Start technology）。<br>0xDE 表示OEM分区（戴尔）。<br>0xFE 表示OEM分区<br>0xA0 表示OEM分区（Laptop hibernation partition）<br>0xEE 表示该分区表是PMBR，紧随其后的应该是GPT分区表头和GPT分区表，因此这是一块GPT硬盘。<br>0xEF 表示EFI系统分区</p>
+<p>Windows正是根据分区表中设定的分区类型决定分区的用途（OEM或其他）和属性（是否隐藏等）。其他大多数分区类型Windows无法识别。</p>
+<h3 id="Windows下更改分区类型的方法"><a href="#Windows下更改分区类型的方法" class="headerlink" title="Windows下更改分区类型的方法"></a>Windows下更改分区类型的方法</h3><p>自Vista开始，系统自带的diskpart分区管理工具已具备更改分区类型的功能。更改分区类型，只需在具有管理员身份的CMD中依次执行以下几个命令即可（括号内为注释内容）：</p>
+<p>Diskpart（打开diskpart工具）<br>List disk（可选。帮助查看连接到电脑的所有存储器及其编号）<br>Select disk N（选择地N个硬盘，N为硬盘编号）<br>List part（可选。帮助查看选定硬盘上的所有分区及其编号）<br>Select part N（选定第N个分区，N代表分区编号）<br>Set id &#x3D; xx（设定分区类型，xx代表十六进制分区类型ID，省略0x）</p>
+<p><strong>举两个我们可能需要用到的例子：</strong></p>
+<p>① 改变隐藏的OEM分区类型，从而能够查看OEM分区中的内容。</p>
+<p><strong>注意：</strong>如果还想更改回去，请在select part之后运行detail part记下分区默认的分区类型，方便事后还原。</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-1.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-mbr-1">]</p>
+<p>完成图中的操作后，如果没有自动分配盘符，可以尝试重启<strong>或</strong>在磁盘管理中手动添加“驱动器号”<strong>或</strong>紧接着图中最后一步执行以下命令添加盘符（e为盘符）。</p>
+<p>assign letter&#x3D;e</p>
+<p>同理，如果要将某一个分区设置为OEM分区，只需将其分区类型设置为出厂默认的OEM分区类型ID或12或DE即可。</p>
+<p>② 作为博客<a target="_blank" rel="noopener" href="https://blogs.iapplee.com/win8-or-win8-1-system-backup/">Win8&#x2F;8.1备份教程</a>的补充。我们将系统备份映像存放到单独的隐藏分区中，以保护备份映像不受到损坏。</p>
+<p>首先，准备一个可容纳备份映像文件的空分区（主分区、逻辑分区都可以），将备份映像按下图所示的路径存放（\sources\install.wim）</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-2.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-mbr-2">]</p>
+<p>然后，配置恢复映像，将分区类型设置为“<strong>恢复分区</strong>”。如下图所示。</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-mbr-3.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-mbr-3">]</p>
+<p>完成图中的步骤，用于恢复系统的系统备份分区就被隐藏掉了。如果计算机中还能够看到该分区（有盘符），紧接着图中最后一步运行下面的命令删除盘符：</p>
+<p>remove</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p><strong>那么，GPT硬盘上又是怎么样的情况呢？</strong></p>
+<p>在GPT分区表中的分区信息中同样有一段用于表示分区类型的内容（16字节，即128位）。可以<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/GUID%E7%A3%81%E7%A2%9F%E5%88%86%E5%89%B2%E8%A1%A8#.E5.88.86.E5.8C.BA.E7.B1.BB.E5.9E.8BGUID">在这里查看分区类型列表</a>（十六进制的GUID表示）。<strong>Windows下常见的GUID分区类型主要有：</strong></p>
+<p>C12A7328-F81F-11D2-BA4B-00A0C93EC93B       EFI系统分区<br>DE94BBA4-06D1-4D40-A16A-BFD50179D6AC     WinRE恢复环境分区、系统备份分区<br>E3C9E316-0B5C-4DB8-817D-F92DF00215AE       微软保留（MSR）分区<br>EBD0A0A2-B9E5-4433-87C0-68B6B72699C7      基本数据分区<br>5808C8AA-7E8F-42E0-85D2-E1E90434CFB3       逻辑软盘管理工具元数据分区<br>AF9B60A0-1431-4F62-BC68-3311714A69AD      逻辑软盘管理工具数据分区<br>37AFFC90-EF7D-4e96-91C3-2D7AE055B174     IBM通用并行文件系统(GPFS)分区<br>E75CAF8F-F680-4CEE-AFA3-B001E56EFC2D     存储空间（Storage Spaces）分区</p>
+<p>BFBFAFE7-A34F-448A-9A5B-6213EB736C22      Lenovo OEM分区（一键还原启动分区）<br>F4019732-066E-4E12-8273-346C5641494F        Sony OEM分区（一键还原启动分区）</p>
+<p>GPT分区类型用于区别分区的用途，GPT分区表中的分区信息中除了分区类型外，还用了另一段区域（8字节，即64位）来表示分区属性，<strong>各位作用如下</strong>：</p>
+<p>0x0000000000000001（0位） 将分区表示为必需分区，不允许用户更改数据（Windows下将标记为OEM分区）<br>0x8000000000000000（63位）  当硬盘被挂载到另一台电脑时默认不分配盘符。<br>0x4000000000000000（62位） 表示该分区不可被检测到。<br>0x2000000000000000（61位） 表述该分区为另一个分区的卷影拷贝。<br>0x1000000000000000（60位） 为分区设置只读属性。</p>
+<p>关于分区属性，更详细的介绍参考《<a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa381635(VS.85).aspx">CREATE_PARTITION_PARAMETERS structure</a>》</p>
+<h3 id="Windows下通常采用以下分区类型和分区属性组合："><a href="#Windows下通常采用以下分区类型和分区属性组合：" class="headerlink" title="Windows下通常采用以下分区类型和分区属性组合："></a>Windows下通常采用以下分区类型和分区属性组合：</h3><p>普通数据分区——EBD0A0A2-B9E5-4433-87C0-68B6B72699C7——0x0000000000000000<br>OEM分区——无特定GUID值，OEM决定——0x8000000000000001<br>WinRE分区——DE94BBA4-06D1-4D40-A16A-BFD50179D6AC——0x8000000000000001<br>EFI系统分区——C12A7328-F81F-11D2-BA4B-00A0C93EC93B——0x8000000000000001<br>MSR保留分区——E3C9E316-0B5C-4DB8-817D-F92DF00215AE——0x8000000000000000<br>恢复&#x2F;备份分区——DE94BBA4-06D1-4D40-A16A-BFD50179D6AC——0x8000000000000001</p>
+<h3 id="更改GPT分区类型和分区属性的方法："><a href="#更改GPT分区类型和分区属性的方法：" class="headerlink" title="更改GPT分区类型和分区属性的方法："></a>更改GPT分区类型和分区属性的方法：</h3><p>在管理员身份的CMD中（Vista以上版本系统）依次执行以下命令即可（括号内为注释内容）：</p>
+<p>Diskpart  （打开diskpart工具）<br>List disk  （可选。帮助查看连接到电脑的所有存储器及其编号）<br>Select disk N  （选择地N个硬盘，N为硬盘编号）<br>List part  （可选。帮助查看选定硬盘上的所有分区及其编号）<br>Select part N  （选定第N个分区，N代表分区编号）<br>Set id &#x3D; xx  （设定分区类型，xx代表十六进制GUID分区类型ID）<br>gpt attributes &#x3D; 0xXXXXXXXXXXXXXXXX  （设置分区属性，XXXXXXXXXXXXXXXX代表分区属性）</p>
+<p><strong>同样采用上文MBR硬盘中的两个例子，其在GPT硬盘中的操作方法如下：</strong></p>
+<p>① 改变隐藏的OEM分区类型，从而能够查看OEM分区中的内容。</p>
+<p><strong>注意：</strong>如果还想更改回去，请在select part之后运行detail part记下分区默认的分区类型和属性，方便事后还原。</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-1.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-gpt-1">]</p>
+<p>完成图中的操作后，如果没有自动分配盘符，可以尝试重启<strong>或</strong>在磁盘管理中手动添加“驱动器号”<strong>或</strong>紧接着图中最后一步执行以下命令添加盘符（e为盘符）。</p>
+<p>assign letter&#x3D;e</p>
+<p>同理，如果要将某一个分区设置为OEM分区，只需将其分区类型设置为出厂默认或{EBD0A0A2-B9E5-4433-87C0-68B6B72699C7}或其他非特殊（即上文列表中之外）的GUID，再将其属性设置为0x8000000000000001（隐藏）或0x0000000000000001即可。</p>
+<p>② 作为博客<a target="_blank" rel="noopener" href="https://blogs.iapplee.com/win8-or-win8-1-system-backup/">Win8&#x2F;8.1备份教程</a>的补充。我们将系统备份映像存放到单独的隐藏分区中，以保护备份映像不受到损坏。</p>
+<p>首先，准备一个可容纳备份映像文件的空分区，将备份映像按下图所示的路径存放（\sources\install.wim）</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-2.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-gpt-2">]</p>
+<p>然后，配置恢复映像，将分区类型设置为“<strong>恢复分区</strong>”。如下图所示。</p>
+<p>[<img src="/./../images/MBR-GPT%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%B1%BB%E5%9E%8B-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3%EF%BC%88Win%E4%B8%8B%E6%9B%B4%E6%94%B9-%E8%AE%BE%E7%BD%AEOEM-%E6%81%A2%E5%A4%8D%E5%88%86%E5%8C%BA%E6%96%B9%E6%B3%95%EF%BC%89/partition-type-setup-gpt-3.gif" srcset="/img/loading.gif" lazyload alt="partition type setup-gpt-3">]</p>
+<p>完成图中的步骤，用于恢复系统的系统备份分区就被隐藏掉了。如果计算机中还能够看到该分区（有盘符），紧接着图中最后一步运行下面的命令删除盘符即可：</p>
+<p>remove</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Wim/" class="category-chain-item">Wim</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Wim/" class="print-no-link">#Wim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Wim/b4afe920/" title="你需要掌握的Scoop技巧和知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">你需要掌握的Scoop技巧和知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Wim/903f6de9/" title="WSL2 设置静态 IP">
+                        <span class="hidden-mobile">WSL2 设置静态 IP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23li0kgQjtCqwFNwS4","clientSecret":"821f4ac10413f179966ab494641606756fb8a361","repo":"hexoBlogLaiZho","owner":"LaiZho","admin":["LaiZho"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'f85aa3eb44ba2e1b01f94aaf8d3a68e6'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://laizho.github.io/atom.xml" target="_blank" rel="nofollow noopener"><i class="iconfont icon-rss"></i>RSS</a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      渝ICP备19013968号
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+
+</body>
+</html>

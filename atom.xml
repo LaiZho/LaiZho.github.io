@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>12点半</title>
-  <icon>https://laizho.github.io/img/icon-128x128.png</icon>
+  <icon>https://blog.tinqin881.top/img/icon-128x128.png</icon>
   <subtitle>半夜不怕鬼敲门</subtitle>
-  <link href="https://laizho.github.io/atom.xml" rel="self"/>
+  <link href="https://blog.tinqin881.top/atom.xml" rel="self"/>
   
-  <link href="https://laizho.github.io/"/>
-  <updated>2024-08-03T14:23:11.713Z</updated>
-  <id>https://laizho.github.io/</id>
+  <link href="https://blog.tinqin881.top/"/>
+  <updated>2024-08-04T14:31:55.551Z</updated>
+  <id>https://blog.tinqin881.top/</id>
   
   <author>
     <name>John Doe</name>
@@ -17,9 +17,314 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Windows快速启动背后的功臣：休眠</title>
+    <link href="https://blog.tinqin881.top/Wim/fd70b6c4/"/>
+    <id>https://blog.tinqin881.top/Wim/fd70b6c4/</id>
+    <published>2024-08-04T14:29:14.000Z</published>
+    <updated>2024-08-04T14:31:55.551Z</updated>
+    
+    
+    <summary type="html">在PC的世界里，微软还是这里的君主，这个总部坐落在美国北方西雅图的北境统治者感受到越来越强的寒意。Winter is coming，Linux的不死士兵们不断是从各个角落钻出来，撬动着微软王座的基石：Windows操作系统。微软不得不加紧修修补补，改善Windows的用户体验。毕竟他的臣民们如果都叛逃了，他的皇位也会不保。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你需要掌握的Scoop技巧和知识</title>
+    <link href="https://blog.tinqin881.top/Wim/b4afe920/"/>
+    <id>https://blog.tinqin881.top/Wim/b4afe920/</id>
+    <published>2024-08-04T14:25:33.000Z</published>
+    <updated>2024-08-04T14:33:02.650Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本文列举了Scoop各种使用技巧和相关知识。包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scoop</summary>
+        
+      
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+    <category term="Scoop" scheme="https://blog.tinqin881.top/tags/Scoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MBR &amp; GPT 硬盘分区类型&amp;属性详解（Win 下更改/设置 OEM/恢复分区方法）</title>
+    <link href="https://blog.tinqin881.top/Wim/4a6f0b8d/"/>
+    <id>https://blog.tinqin881.top/Wim/4a6f0b8d/</id>
+    <published>2024-08-04T14:22:54.000Z</published>
+    <updated>2024-08-04T14:35:00.277Z</updated>
+    
+    
+    <summary type="html">打开Windows系统的磁盘管理，你可能会在硬盘上发现一个或若干个特殊分区，他们一般都带有特殊的标记，并且通常都具有隐藏属性，比如，OEM分区、恢复分区皆如此。那么这些分区是靠什么表现出特殊属性的呢？而我们又能不能改变这些属性呢？本文就来详细解释这个问题。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSL2 设置静态 IP</title>
+    <link href="https://blog.tinqin881.top/Wim/903f6de9/"/>
+    <id>https://blog.tinqin881.top/Wim/903f6de9/</id>
+    <published>2024-08-04T14:19:25.000Z</published>
+    <updated>2024-08-04T14:31:55.548Z</updated>
+    
+    
+    <summary type="html">本人Windows 11 家庭中文版系统从Microsoft Store中安装Ubuntu系统（版本号：2204.2.33.0），用于一些Linux系统的操作，但是在使用中面临了一个较大的问题：每次启动电脑或者重启Ubuntu系统都会导致Ubuntu的IP地址变化，对于docker使用、window连接Ubuntu系统Python环境等均会带来繁琐的问题，因此本文主要介绍如何设置WSL2为静态IP。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+    <category term="WSL" scheme="https://blog.tinqin881.top/tags/WSL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 DISM 将 Windows 映像更改为更高版本</title>
+    <link href="https://blog.tinqin881.top/Wim/5c561dcf/"/>
+    <id>https://blog.tinqin881.top/Wim/5c561dcf/</id>
+    <published>2024-08-04T14:16:47.000Z</published>
+    <updated>2024-08-04T14:31:55.554Z</updated>
+    
+    
+    <summary type="html">你可以使用 Windows 版本维护命令列出映像的潜在版本或将映像的版本更改为更高版本。 每个潜在目标版本的包都暂存在 Windows 映像中。 维护映像时，系统会向映像中的每个版本应用更新。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Dism" scheme="https://blog.tinqin881.top/tags/Dism/"/>
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sysprep 命令行选项</title>
+    <link href="https://blog.tinqin881.top/Wim/8ef5f3d7/"/>
+    <id>https://blog.tinqin881.top/Wim/8ef5f3d7/</id>
+    <published>2024-08-04T14:14:11.000Z</published>
+    <updated>2024-08-04T14:31:55.547Z</updated>
+    
+    
+    <summary type="html">运行 Sysprep，以准备要被捕获的 Windows 安装。 本主题介绍系统准备 (Sysprep) 工具的命令行语法。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Dism" scheme="https://blog.tinqin881.top/tags/Dism/"/>
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DISM 驱动程序维护 (.inf) 命令行选项</title>
+    <link href="https://blog.tinqin881.top/Wim/9fabbc04/"/>
+    <id>https://blog.tinqin881.top/Wim/9fabbc04/</id>
+    <published>2024-08-04T14:09:44.000Z</published>
+    <updated>2024-08-04T14:31:55.543Z</updated>
+    
+    
+    <summary type="html">将 DISM 与 INF 样式驱动程序配合使用，以便对联机或脱机 Windows 映像 (.wim) 执行添加、删除或列出驱动程序的操作。 不支持 Microsoft Windows 安装程序或其他驱动程序包类型（例如 .exe 文件）。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Dism" scheme="https://blog.tinqin881.top/tags/Dism/"/>
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DISM 预配包 (.ppkg) 命令行选项</title>
+    <link href="https://blog.tinqin881.top/Wim/cd1d84dc/"/>
+    <id>https://blog.tinqin881.top/Wim/cd1d84dc/</id>
+    <published>2024-08-04T14:07:06.000Z</published>
+    <updated>2024-08-04T14:31:55.542Z</updated>
+    
+    
+    <summary type="html">使用 DISM 处理预配包 (.ppkg) 文件。 例如，可以将设置和 Windows 桌面应用程序添加到 Windows，或减小 Windows 安装的大小。</summary>
+    
+    
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/categories/Wim/"/>
+    
+    
+    <category term="Dism" scheme="https://blog.tinqin881.top/tags/Dism/"/>
+    
+    <category term="Wim" scheme="https://blog.tinqin881.top/tags/Wim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何优雅的给Docker配置网络代理</title>
+    <link href="https://blog.tinqin881.top/Linux-Web/2acdf751/"/>
+    <id>https://blog.tinqin881.top/Linux-Web/2acdf751/</id>
+    <published>2024-08-04T14:03:31.000Z</published>
+    <updated>2024-08-04T14:31:55.555Z</updated>
+    
+    
+    <summary type="html">有时因为网络原因，比如公司 NAT，或其它啥的，需要使用代理。Docker 的代理配置，略显复杂，因为有三种场景。但基本原理都是一致的，都是利用 Linux 的 http_proxy 等环境变量。</summary>
+    
+    
+    
+    <category term="Linux,Web" scheme="https://blog.tinqin881.top/categories/Linux-Web/"/>
+    
+    
+    <category term="Web" scheme="https://blog.tinqin881.top/tags/Web/"/>
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
+    
+    <category term="Docker" scheme="https://blog.tinqin881.top/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows Server【开机启动和任务计划程序】实现服务器重启后项目自启动</title>
+    <link href="https://blog.tinqin881.top/Win/433fe59d/"/>
+    <id>https://blog.tinqin881.top/Win/433fe59d/</id>
+    <published>2024-08-04T14:00:37.000Z</published>
+    <updated>2024-08-04T14:31:55.550Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-说明&quot;&gt;&lt;a href=&quot;#1-说明&quot; class=&quot;headerlink&quot; title=&quot;1.说明&quot;&gt;&lt;/a&gt;1.说明&lt;/h3&gt;&lt;p&gt;有些时候我们希望计算机开机后就启动一些服务或应用程序。&lt;/p&gt;
+&lt;h3 id=&quot;2-开机启动&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Win" scheme="https://blog.tinqin881.top/categories/Win/"/>
+    
+    
+    <category term="Win" scheme="https://blog.tinqin881.top/tags/Win/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[家用显卡虚拟化] Hyper-V 配置 GPU 分区</title>
+    <link href="https://blog.tinqin881.top/Win/54d146a5/"/>
+    <id>https://blog.tinqin881.top/Win/54d146a5/</id>
+    <published>2024-08-04T13:55:24.000Z</published>
+    <updated>2024-08-04T13:59:35.547Z</updated>
+    
+    
+    <summary type="html">最近一段时间在搞 EVE Online 的脚本，而由于一个脚本程序在单台电脑上只支持开到最多15个端，故决定使用虚拟机。由于如果没有图形设备的话游戏根本跑不起来，vmware的3D加速功能性能实在堪忧，服务器只装了一张GT710，虚拟化之后完全带不动游戏，直通的方案也是同样的问题：只有一张显卡，没法分给多个虚拟机使用，于是最后决定使用Hyper-V的GPU分区（GPU-PV）功能</summary>
+    
+    
+    
+    <category term="Win" scheme="https://blog.tinqin881.top/categories/Win/"/>
+    
+    
+    <category term="Win" scheme="https://blog.tinqin881.top/tags/Win/"/>
+    
+    <category term="Hyper-V" scheme="https://blog.tinqin881.top/tags/Hyper-V/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux——shell脚本的传参方式</title>
+    <link href="https://blog.tinqin881.top/Linux/924629c4/"/>
+    <id>https://blog.tinqin881.top/Linux/924629c4/</id>
+    <published>2024-08-04T13:51:13.000Z</published>
+    <updated>2024-08-04T13:54:23.119Z</updated>
+    
+    
+    <summary type="html">对于逻辑较为复杂的shell脚本来说，脚本的执行逻辑需要结合我们传入的参数来解析运行。本文将对shell脚本中传参方式进行介绍，内容不多，希望对各位读者有所帮助。</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
+    
+    <category term="Shell" scheme="https://blog.tinqin881.top/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mihomo 内核适配 Clash for Windows / Clash Verge</title>
+    <link href="https://blog.tinqin881.top/Linux/a5210e09/"/>
+    <id>https://blog.tinqin881.top/Linux/a5210e09/</id>
+    <published>2024-08-04T13:46:31.000Z</published>
+    <updated>2024-08-04T13:50:11.550Z</updated>
+    
+    
+    <summary type="html">原版 Clash 内核的 Http 混淆默认 UA 为 Go-http-client/1.1 ，如果开启了 Http 混淆（shadowsocks + v2ray-plugin）会被精准打击，切换修改 UA 的内核（Mihomo）可以解决这个问题。</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
+    
+    <category term="Clash" scheme="https://blog.tinqin881.top/tags/Clash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 安装 Clash 内核并开启透明代理</title>
+    <link href="https://blog.tinqin881.top/Linux/ddb123bf/"/>
+    <id>https://blog.tinqin881.top/Linux/ddb123bf/</id>
+    <published>2024-08-03T14:28:59.000Z</published>
+    <updated>2024-08-04T13:53:26.347Z</updated>
+    
+    
+    <summary type="html">Linux 安装 Clash 内核并开启透明代理</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
+    
+    <category term="Clash" scheme="https://blog.tinqin881.top/tags/Clash/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu安裝FishShell+Tide主題與各種插件</title>
-    <link href="https://laizho.github.io/Linux-Shell/8db49697/"/>
-    <id>https://laizho.github.io/Linux-Shell/8db49697/</id>
+    <link href="https://blog.tinqin881.top/Linux-Shell/8db49697/"/>
+    <id>https://blog.tinqin881.top/Linux-Shell/8db49697/</id>
     <published>2024-08-03T12:42:26.000Z</published>
     <updated>2024-08-03T14:23:11.713Z</updated>
     
@@ -28,17 +333,17 @@
     
     
     
-    <category term="Linux,Shell" scheme="https://laizho.github.io/categories/Linux-Shell/"/>
+    <category term="Linux,Shell" scheme="https://blog.tinqin881.top/categories/Linux-Shell/"/>
     
     
-    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>CDN 缓存配置和其它配置实用优化</title>
-    <link href="https://laizho.github.io/Web/39758bc7/"/>
-    <id>https://laizho.github.io/Web/39758bc7/</id>
+    <link href="https://blog.tinqin881.top/Web/39758bc7/"/>
+    <id>https://blog.tinqin881.top/Web/39758bc7/</id>
     <published>2024-08-03T12:35:39.000Z</published>
     <updated>2024-08-03T12:41:13.598Z</updated>
     
@@ -47,17 +352,17 @@
     
     
     
-    <category term="Web" scheme="https://laizho.github.io/categories/Web/"/>
+    <category term="Web" scheme="https://blog.tinqin881.top/categories/Web/"/>
     
     
-    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
+    <category term="Web" scheme="https://blog.tinqin881.top/tags/Web/"/>
     
   </entry>
   
   <entry>
     <title>Sip 服务器（Freeswitch）屏蔽国外 IP</title>
-    <link href="https://laizho.github.io/Linux-Web/67a7fc07/"/>
-    <id>https://laizho.github.io/Linux-Web/67a7fc07/</id>
+    <link href="https://blog.tinqin881.top/Linux-Web/67a7fc07/"/>
+    <id>https://blog.tinqin881.top/Linux-Web/67a7fc07/</id>
     <published>2024-08-03T12:22:35.000Z</published>
     <updated>2024-08-03T12:30:03.339Z</updated>
     
@@ -66,19 +371,19 @@
     
     
     
-    <category term="Linux,Web" scheme="https://laizho.github.io/categories/Linux-Web/"/>
+    <category term="Linux,Web" scheme="https://blog.tinqin881.top/categories/Linux-Web/"/>
     
     
-    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
+    <category term="Web" scheme="https://blog.tinqin881.top/tags/Web/"/>
     
-    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>使用 Openbox 作为基底打造你自己的 Linux 桌面环境</title>
-    <link href="https://laizho.github.io/Linux/bd980760/"/>
-    <id>https://laizho.github.io/Linux/bd980760/</id>
+    <link href="https://blog.tinqin881.top/Linux/bd980760/"/>
+    <id>https://blog.tinqin881.top/Linux/bd980760/</id>
     <published>2024-08-03T11:37:34.000Z</published>
     <updated>2024-08-03T12:21:25.418Z</updated>
     
@@ -87,17 +392,17 @@
     
     
     
-    <category term="Linux" scheme="https://laizho.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Nano 编辑器可以做些什么？</title>
-    <link href="https://laizho.github.io/Linux/e527aabb/"/>
-    <id>https://laizho.github.io/Linux/e527aabb/</id>
+    <link href="https://blog.tinqin881.top/Linux/e527aabb/"/>
+    <id>https://blog.tinqin881.top/Linux/e527aabb/</id>
     <published>2024-08-03T11:32:49.000Z</published>
     <updated>2024-08-03T11:35:05.775Z</updated>
     
@@ -106,17 +411,17 @@
     
     
     
-    <category term="Linux" scheme="https://laizho.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://blog.tinqin881.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>教程_Scoop:超好用的Windows包管理器</title>
-    <link href="https://laizho.github.io/Scoop-Windows/23e0cb97/"/>
-    <id>https://laizho.github.io/Scoop-Windows/23e0cb97/</id>
+    <link href="https://blog.tinqin881.top/Scoop-Windows/23e0cb97/"/>
+    <id>https://blog.tinqin881.top/Scoop-Windows/23e0cb97/</id>
     <published>2024-08-03T11:24:46.000Z</published>
     <updated>2024-08-03T11:32:06.493Z</updated>
     
@@ -125,109 +430,12 @@
     
     
     
-    <category term="Scoop,Windows" scheme="https://laizho.github.io/categories/Scoop-Windows/"/>
+    <category term="Scoop,Windows" scheme="https://blog.tinqin881.top/categories/Scoop-Windows/"/>
     
     
-    <category term="Win" scheme="https://laizho.github.io/tags/Win/"/>
+    <category term="Win" scheme="https://blog.tinqin881.top/tags/Win/"/>
     
-    <category term="Scoop" scheme="https://laizho.github.io/tags/Scoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>4 种实用方法：如何设置 Windows10/11 自动登录</title>
-    <link href="https://laizho.github.io/Windows/21f09687/"/>
-    <id>https://laizho.github.io/Windows/21f09687/</id>
-    <published>2024-08-03T11:17:52.000Z</published>
-    <updated>2024-08-03T11:24:10.392Z</updated>
-    
-    
-    <summary type="html">当启动 Windows PC 时，登录界面会列出一个或多个用户账户。你需要选择一个账户并通过身份验证才能进入桌面。Windows 支持多种登录验证方式，如密码和Windows Hello，这对于多用户设备来说会十分便利。</summary>
-    
-    
-    
-    <category term="Windows" scheme="https://laizho.github.io/categories/Windows/"/>
-    
-    
-    <category term="Win" scheme="https://laizho.github.io/tags/Win/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 Ubuntu 上安装和使用 Flatpak</title>
-    <link href="https://laizho.github.io/Linux/49383a15/"/>
-    <id>https://laizho.github.io/Linux/49383a15/</id>
-    <published>2024-08-03T10:59:31.000Z</published>
-    <updated>2024-08-03T11:07:39.270Z</updated>
-    
-    
-    <summary type="html">Linux 世界有三种“通用”打包格式，允许在“任何” Linux 发行版上运行：Snap、Flatpak 和 AppImage。</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://laizho.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://laizho.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome：用uBlacklist屏蔽CSDN搜索结果</title>
-    <link href="https://laizho.github.io/Web/eb9d0ae5/"/>
-    <id>https://laizho.github.io/Web/eb9d0ae5/</id>
-    <published>2024-08-03T10:43:46.000Z</published>
-    <updated>2024-08-03T12:20:19.972Z</updated>
-    
-    
-    <summary type="html">CSDN现在广告满天飞，且很多博客需要先关注才能复制，非常令人无语。如果每次用Google搜索的时候都要加上&quot;-csdn&quot;选项，就非常麻烦。有没有更方便的办法呢？我们可以利用Chrome的uBlacklist插件。</summary>
-    
-    
-    
-    <category term="Web" scheme="https://laizho.github.io/categories/Web/"/>
-    
-    
-    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1Panel面板修改PHP构建扩展，GD扩展增加avif支持</title>
-    <link href="https://laizho.github.io/Web/662c4eb9/"/>
-    <id>https://laizho.github.io/Web/662c4eb9/</id>
-    <published>2024-08-03T10:28:44.000Z</published>
-    <updated>2024-08-03T10:39:08.329Z</updated>
-    
-    
-    <summary type="html">通过微调 1Panel面板PHP构建文件，可以为扩展编译增加更多的支持，省去自己构建麻烦</summary>
-    
-    
-    
-    <category term="Web" scheme="https://laizho.github.io/categories/Web/"/>
-    
-    
-    <category term="Web" scheme="https://laizho.github.io/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你好世界！</title>
-    <link href="https://laizho.github.io/uncategorized/4a17b156/"/>
-    <id>https://laizho.github.io/uncategorized/4a17b156/</id>
-    <published>2024-08-02T16:46:21.318Z</published>
-    <updated>2024-08-03T11:36:24.994Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
+    <category term="Scoop" scheme="https://blog.tinqin881.top/tags/Scoop/"/>
     
   </entry>
   

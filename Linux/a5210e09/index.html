@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon-128x128.png">
+  <link rel="icon" href="/img/icon-128x128.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="原版 Clash 内核的 Http 混淆默认 UA 为 Go-http-client&#x2F;1.1 ，如果开启了 Http 混淆（shadowsocks + v2ray-plugin）会被精准打击，切换修改 UA 的内核（Mihomo）可以解决这个问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mihomo 内核适配 Clash for Windows &#x2F; Clash Verge">
+<meta property="og:url" content="https://blog.tinqin881.top/Linux/a5210e09/index.html">
+<meta property="og:site_name" content="12点半">
+<meta property="og:description" content="原版 Clash 内核的 Http 混淆默认 UA 为 Go-http-client&#x2F;1.1 ，如果开启了 Http 混淆（shadowsocks + v2ray-plugin）会被精准打击，切换修改 UA 的内核（Mihomo）可以解决这个问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/e002892f366d8cb0228483dc74cb7c3c.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/0ee510d81ea0da09dc52e1cd27466381.png">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/1f9254a7401414a1644a686021df0438.png">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/73386395c0b0ef902cdb4012bd67a2e1.png">
+<meta property="article:published_time" content="2024-08-04T13:46:31.000Z">
+<meta property="article:modified_time" content="2024-08-04T13:50:11.550Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Clash">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.tinqin881.top/images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/e002892f366d8cb0228483dc74cb7c3c.webp">
+  
+  
+  
+  <title>Mihomo 内核适配 Clash for Windows / Clash Verge - 12点半</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.tinqin881.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="12点半" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>12点半</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loliapi.com/acg/pc/') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mihomo 内核适配 Clash for Windows / Clash Verge"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-04 21:46" pubdate>
+          2024年8月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          692 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mihomo 内核适配 Clash for Windows / Clash Verge</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/./../images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/e002892f366d8cb0228483dc74cb7c3c.webp" srcset="/img/loading.gif" lazyload alt="Mihomo 内核适配 Clash for Windows / Clash Verge"></p>
+<p>原版 Clash 内核的 Http 混淆默认 UA 为 Go-http-client&#x2F;1.1 ，如果开启了 Http 混淆（shadowsocks + v2ray-plugin）会被精准打击，切换修改 UA 的内核（Mihomo）可以解决这个问题。</p>
+<p>原版 Clash 内核已经不维护了，建议切换到新分支 <a target="_blank" rel="noopener" href="https://github.com/MetaCubeX/mihomo">Mihomo</a> 内核。</p>
+<p>目前 Windows平台 <a target="_blank" rel="noopener" href="https://github.com/2dust/clashN">clashN</a> 和 Mac平台 <a target="_blank" rel="noopener" href="https://github.com/MetaCubeX/ClashX.Meta">ClashX.Meta</a> 是原生支持 Mihomo 内核的 Clash GUI，可以直接使用。</p>
+<p>Mihomo 内核原版编译的二进制执行文件无法直接替换 Clash for Windows &#x2F; Clash Verge 的 Clash 内核。查看源码后，发现 Mihomo 内核加载配置目录与原版 Clash 内核不同，修改一下即可替换。</p>
+<h2 id="修改源码"><a href="#修改源码" class="headerlink" title="修改源码"></a>修改源码</h2><p>在 <strong>main.go</strong> 中修改 <strong>init()</strong> 函数：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;<br><br>    <span class="hljs-comment">// 获取用户主目录</span><br>    userHomeDir, err := os.UserHomeDir()<br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>        fmt.Println(<span class="hljs-string">&quot;Error getting user home directory:&quot;</span>, err)<br>        os.Exit(<span class="hljs-number">1</span>)<br>    &#125;<br><br>    <span class="hljs-comment">// 设置默认的配置目录值</span><br>    defaultConfigDir := filepath.Join(userHomeDir, <span class="hljs-string">&quot;.config&quot;</span>, <span class="hljs-string">&quot;clash&quot;</span>)<br><br>    flag.StringVar(&amp;homeDir, <span class="hljs-string">&quot;d&quot;</span>, defaultConfigDir, <span class="hljs-string">&quot;set configuration directory&quot;</span>)<br>    flag.StringVar(&amp;configFile, <span class="hljs-string">&quot;f&quot;</span>, os.Getenv(<span class="hljs-string">&quot;CLASH_CONFIG_FILE&quot;</span>), <span class="hljs-string">&quot;specify configuration file&quot;</span>)<br>    flag.StringVar(&amp;externalUI, <span class="hljs-string">&quot;ext-ui&quot;</span>, os.Getenv(<span class="hljs-string">&quot;CLASH_OVERRIDE_EXTERNAL_UI_DIR&quot;</span>), <span class="hljs-string">&quot;override external ui directory&quot;</span>)<br>    flag.StringVar(&amp;externalController, <span class="hljs-string">&quot;ext-ctl&quot;</span>, os.Getenv(<span class="hljs-string">&quot;CLASH_OVERRIDE_EXTERNAL_CONTROLLER&quot;</span>), <span class="hljs-string">&quot;override external controller address&quot;</span>)<br>    flag.StringVar(&amp;secret, <span class="hljs-string">&quot;secret&quot;</span>, os.Getenv(<span class="hljs-string">&quot;CLASH_OVERRIDE_SECRET&quot;</span>), <span class="hljs-string">&quot;override secret for RESTful API&quot;</span>)<br>    flag.BoolVar(&amp;geodataMode, <span class="hljs-string">&quot;m&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;set geodata mode&quot;</span>)<br>    flag.BoolVar(&amp;version, <span class="hljs-string">&quot;v&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;show current version of mihomo&quot;</span>)<br>    flag.BoolVar(&amp;testConfig, <span class="hljs-string">&quot;t&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;test configuration and exit&quot;</span>)<br>    flag.Parse()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="编译源码"><a href="#编译源码" class="headerlink" title="编译源码"></a>编译源码</h2><ul>
+<li>需要安装 golang make</li>
+</ul>
+<p>执行编译命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make<br></code></pre></td></tr></table></figure>
+
+<h2 id="替换内核"><a href="#替换内核" class="headerlink" title="替换内核"></a>替换内核</h2><h3 id="Windows-平台"><a href="#Windows-平台" class="headerlink" title="Windows 平台"></a>Windows 平台</h3><ol>
+<li>将编译的内核重命名为 <strong>clash-win64.exe</strong></li>
+<li>关闭 Clash for Windows，解压下载文件后替换原内核</li>
+</ol>
+<p>内核目录（两个目录其中一个，取决于安装时是否选择为全部用户安装，第二个记得把用户名替换为自己的）：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">C:\<span class="hljs-title">Program</span> <span class="hljs-title">Files</span>\<span class="hljs-title">Clash</span> <span class="hljs-title">for</span> <span class="hljs-title">Windows</span>\<span class="hljs-title">resources</span>\<span class="hljs-title">static</span>\<span class="hljs-title">files</span>\<span class="hljs-title">win</span>\<span class="hljs-title">x64</span></span><br><span class="hljs-function"><span class="hljs-title">C</span>:\<span class="hljs-title">Users</span>\用户名\<span class="hljs-title">AppData</span>\<span class="hljs-title">Local</span>\<span class="hljs-title">Programs</span>\<span class="hljs-title">Clash</span> <span class="hljs-title">for</span> <span class="hljs-title">Windows</span>\<span class="hljs-title">resources</span>\<span class="hljs-title">static</span>\<span class="hljs-title">files</span>\<span class="hljs-title">win</span>\<span class="hljs-title">x64</span></span><br></code></pre></td></tr></table></figure>
+
+<p>可以提前复制一下原版内核副本做备份，替换 <strong>clash-win64.exe</strong> (.exe可能是隐藏的) 。</p>
+<p><img src="/./../images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/0ee510d81ea0da09dc52e1cd27466381.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol>
+<li>重新打开 Clash for Windows 使用，注意如果需要使用 TUN Mode，需要右键以管理员身份运行</li>
+</ol>
+<p><img src="/./../images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/1f9254a7401414a1644a686021df0438.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="Clash-Verge"><a href="#Clash-Verge" class="headerlink" title="Clash Verge"></a>Clash Verge</h4><p>Clash Verge 也可以一样操作</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">C:\<span class="hljs-title">Users</span>\用户名\<span class="hljs-title">AppData</span>\<span class="hljs-title">Local</span>\<span class="hljs-title">Clash</span> <span class="hljs-title">Verge</span></span><br></code></pre></td></tr></table></figure>
+
+<p>将下载好的文件解压后，重命名为 <strong>clash.exe</strong> （.exe可能是隐藏的），替换即可</p>
+<p><img src="/./../images/Mihomo%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8DClashforWindows-ClashVerge/73386395c0b0ef902cdb4012bd67a2e1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="Mac-平台"><a href="#Mac-平台" class="headerlink" title="Mac 平台"></a>Mac 平台</h3><p><em>PS:如果首次安装 Clash for Windows 提示已损坏，可以在终端运行 sudo xattr -r -d com.apple.quarantine &#x2F;Applications&#x2F;Clash\ for\ Windows.app</em></p>
+<ol>
+<li>将编译的内核重命名为 <strong>clash-darwin</strong></li>
+<li>关闭 Clash for Windows，解压下载文件后替换原内核，在终端执行</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># 备份原版内核<br>mv /Applications/Clash\ <span class="hljs-keyword">for</span>\ Windows.app/Contents/Resources/static/files/darwin/arm64/clash-darwin /Applications/Clash\ <span class="hljs-keyword">for</span>\ Windows.app/Contents/Resources/static/files/darwin/arm64/clash-darwin.bak<br># 替换内核<br>mv clash-darwin /Applications/Clash\ <span class="hljs-keyword">for</span>\ Windows.app/Contents/Resources/static/files/darwin/arm64/clash-darwin<br># 授予新内核权限<br>sudo chown root:admin /Applications/Clash\ <span class="hljs-keyword">for</span>\ Windows.app/Contents/Resources/static/files/darwin/arm64/clash-darwin<br>sudo chmod +sx /Applications/Clash\ <span class="hljs-keyword">for</span>\ Windows.app/Contents/Resources/static/files/darwin/arm64/clash-darwin<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重新打开 Clash for Windows 使用即可</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Clash/" class="print-no-link">#Clash</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Linux/924629c4/" title="Linux——shell脚本的传参方式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux——shell脚本的传参方式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Linux/ddb123bf/" title="Linux 安装 Clash 内核并开启透明代理">
+                        <span class="hidden-mobile">Linux 安装 Clash 内核并开启透明代理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23li0kgQjtCqwFNwS4","clientSecret":"821f4ac10413f179966ab494641606756fb8a361","repo":"hexoBlogLaiZho","owner":"LaiZho","admin":["LaiZho"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '5ce19ca28953c6530fe3fe87ce13f242'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://laizho.github.io/atom.xml" target="_blank" rel="nofollow noopener"><i class="iconfont icon-rss"></i>RSS</a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      渝ICP备19013968号
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+
+</body>
+</html>

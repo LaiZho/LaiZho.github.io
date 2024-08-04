@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon-128x128.png">
+  <link rel="icon" href="/img/icon-128x128.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在PC的世界里，微软还是这里的君主，这个总部坐落在美国北方西雅图的北境统治者感受到越来越强的寒意。Winter is coming，Linux的不死士兵们不断是从各个角落钻出来，撬动着微软王座的基石：Windows操作系统。微软不得不加紧修修补补，改善Windows的用户体验。毕竟他的臣民们如果都叛逃了，他的皇位也会不保。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows快速启动背后的功臣：休眠">
+<meta property="og:url" content="https://blog.tinqin881.top/Wim/fd70b6c4/index.html">
+<meta property="og:site_name" content="12点半">
+<meta property="og:description" content="在PC的世界里，微软还是这里的君主，这个总部坐落在美国北方西雅图的北境统治者感受到越来越强的寒意。Winter is coming，Linux的不死士兵们不断是从各个角落钻出来，撬动着微软王座的基石：Windows操作系统。微软不得不加紧修修补补，改善Windows的用户体验。毕竟他的臣民们如果都叛逃了，他的皇位也会不保。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d59c65f5cb48042eace57dfa869eca70_1440w.jpeg">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d01581b77005f162ecfe13312d4f8b15.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-328f6eec4ce707ada528f5bc6bd1ac60.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d5d07af318fd122b82a43b1fb1db3e77.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-0172ccb2d05b83e2edf902c4db61e534.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-2005708505e7776d143d8eb59c1edaa8.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d1f23648fb19e5c81d6596157e14e494.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-189aba46bbe0c0c81b2e5ed78bef35b6.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-065cea2dc43dd021be3300df649c8234.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-40c299553f555e5355687d23657154f6.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-833aac0ab98c71d4e0219bf957915dae.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-6ee37661514a2b713dedccdb0551fc4c.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-40ef606dc035ffc0b9af859ec8a245eb.webp">
+<meta property="og:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-f9d8e3a7c30d1f7c1dfad250e9686b96.webp">
+<meta property="article:published_time" content="2024-08-04T14:29:14.000Z">
+<meta property="article:modified_time" content="2024-08-04T14:31:55.551Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Wim">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.tinqin881.top/images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d59c65f5cb48042eace57dfa869eca70_1440w.jpeg">
+  
+  
+  
+  <title>Windows快速启动背后的功臣：休眠 - 12点半</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.tinqin881.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="12点半" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>12点半</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loliapi.com/acg/pc/') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Windows快速启动背后的功臣：休眠"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-04 22:29" pubdate>
+          2024年8月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Windows快速启动背后的功臣：休眠</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d59c65f5cb48042eace57dfa869eca70_1440w.jpeg" srcset="/img/loading.gif" lazyload alt="Windows快速启动背后的功臣：休眠"></p>
+<p>在PC的世界里，微软还是这里的君主，这个总部坐落在美国北方西雅图的北境统治者感受到越来越强的寒意。Winter is coming，Linux的不死士兵们不断是从各个角落钻出来，撬动着微软王座的基石：Windows操作系统。微软不得不加紧修修补补，改善Windows的用户体验。毕竟他的臣民们如果都叛逃了，他的皇位也会不保。</p>
+<p>普通用户感受最大的除了界面的变化之外，一个直观的感受是启动速度快了很多，这和微软在windows 8提出的快速启动（Fast Startup，注意和Android的Fast Boot区别）是分不开的。微软当时统计，启动速度提高了30%到70%:</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d01581b77005f162ecfe13312d4f8b15.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><em>(图片来源 MSDN)</em></p>
+<p>正因为这样的突出表现，Windows8虽然被广泛诟病，快速启动却被保留了下来并在Windows10中继续发挥重要作用。</p>
+<p>快速启动能够如此强大，和它背后的功臣：休眠功能（hibernate）是分不开的。</p>
+<h2 id="休眠hibernate"><a href="#休眠hibernate" class="headerlink" title="休眠hibernate"></a><strong>休眠hibernate</strong></h2><p>Hibernation一般指冬眠，冬眠的动物里最有名的就是熊，而微软在美国科技界的外号就是北极熊，无怪乎休眠被起名Hibernation。</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-328f6eec4ce707ada528f5bc6bd1ac60.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>我们专栏在前面一期介绍过睡眠（Sleep, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26830344">一起学习电脑如何睡眠S3</a>）。我们来回忆一下:</p>
+<p>ACPI提供了一种机制使系统在Working状态（G0）和Sleeping状态（G1）以及soft-off （G2）状态之间转换。</p>
+<p>G1 Sleeping状态下系统耗电较少，没有程序在执行，如果有任何唤醒事件传入系统会使系统快速恢复至G0工作状态。Sleeping状态分为四种：</p>
+<p><strong>S0</strong>：正常工作状态，所有设备正常运转。</p>
+<p><strong>S1</strong>：Sleeping with Processor Context Maintained， CPU停止工作，不执行任何指令，但是CPU，芯片组以及DRAM内容没有遗失。此状态可以快速恢复到工作状态。</p>
+<p><strong>S2</strong>：比S1的睡眠状态更深更省电，CPU停止工作，但是CPU和cache的内容已丢失。DRAM仍处于带电状态。</p>
+<p><strong>S3</strong>：又叫Suspend to RAM，功耗更低，内存信息得以保持，CPU, Cache, Chipset的内容均丢失。DRAM仍处于带电状态。</p>
+<p><strong>S4</strong>：又叫Suspend to Disk，hibernate。功耗最低，唤醒需要的时间最长，所有设备都不再工作。Memory的资料被保存在Disk中。当系统收到唤醒信号后，首先从Disk中恢复memory。</p>
+<p>这里的休眠就是指S4 (hibernate)。作为一个UEFI专栏，这里要指出UEFI固件对于S4不需要做任何特殊处理，memory被保存到disk，S4回来后从Disk恢复的动作全部由操作系统完成，UEFI可以将其作为一般启动即可。这和S3有很大不同。</p>
+<h2 id="快速启动Fast-Startup"><a href="#快速启动Fast-Startup" class="headerlink" title="快速启动Fast Startup"></a><strong>快速启动Fast Startup</strong></h2><p>休眠在windows操作系统中存在已经有很长时间了，微软只是在win8开始为它找到了新的使用场景。微软的工程师一直致力提高启动速度，因为他们发现57%的PC用户和45%的笔记本用户还是每天关闭电脑（2011年数据，见参考文献[1]）：</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d5d07af318fd122b82a43b1fb1db3e77.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-0172ccb2d05b83e2edf902c4db61e534.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><em>(图片来源：MSDN)</em></p>
+<p>而Hibernate却使用率不高。微软的工程师发现: Windows启动到登陆界面要进行的步骤每次完全一样，只有在登陆后运行程序不同。他们产生了一个大胆的想法，为什么不把登陆完成之前的内容借助Hibernate存储下来，而每次启动都从这个点再继续呢？想法不错，经过实验，他们找到了合适的存储点，结果启动速度大为提高。我们通过下图可以形象的看出两者的差别：</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-2005708505e7776d143d8eb59c1edaa8.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><em>（图片来源：MSDN）</em></p>
+<p>Cold boot是指原本的冷启动，下面是快速启动。</p>
+<p>干得好，程序员们！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h2><p>原理说完了，下面说一下它的相关问题：</p>
+<p><strong>1. 怎么开启Fast Startup</strong></p>
+<p>在大多数情况下，快速启动都是缺省开启的。如果你的没有开启，打开快速启动也很简单，照着下面图片做就好了：</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-d1f23648fb19e5c81d6596157e14e494.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-189aba46bbe0c0c81b2e5ed78bef35b6.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-065cea2dc43dd021be3300df649c8234.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-40c299553f555e5355687d23657154f6.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>如果你在电源管理界面里面没有看到开启快速启动的选项框，如下：</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-833aac0ab98c71d4e0219bf957915dae.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>那可能是你的休眠模式没有打开。用管理员模式开启命令行窗口，输入powercfg &#x2F;hibernate on</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-6ee37661514a2b713dedccdb0551fc4c.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>2. 怎么启动个干净的系统</strong></p>
+<p>有些用户担忧，每次都是休眠启动，如果系统出问题，我想要个一干二净的登陆环境怎么办？ 办法由两个：</p>
+<p>A． 关机不要直接用关机选项，而是开启命令行窗口，输入 shutdown &#x2F;s &#x2F;full &#x2F; t 0。</p>
+<p>B． 不要关机，而是选择重启。重启不会用快速启动。</p>
+<p><strong>3. 如何缩小休眠文件 hiberfil.sys</strong></p>
+<p>休眠文件hiberfil.sys随着你的内存大小而设定，通常是你安装内存的75%大小。土豪用户引以为傲的大内存带来了大休眠文件，对寸土寸金的SSD来说就肉痛了。如果你仅仅想用快速启动而对休眠不感兴趣的话，用下面这个命令</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">powercfg /h /type reduced<br></code></pre></td></tr></table></figure>
+
+<p>可以节省大约一半的空间。</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-40ef606dc035ffc0b9af859ec8a245eb.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>请确保在管理员权限下。</p>
+<p><strong>4. 快速启动的缺点</strong></p>
+<p>对双启动或者多启动来说，Windows会锁住启动分区，你有可能不能顺利进入其他操作系统，尤其Linux系统。如果你通过手动进入的话，对Windows分区进行操作可能会导致再次返回该Windows时发生蓝屏。建议Dual OS的用户慎用快速启动。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><p>这里乱入一个知识点。微软不但把休眠用到了开机上，还创造出了一个叫做混合睡眠的概念。这是因为微软发现关闭电脑，尤其是笔记本的人越来越少。经过平板浪潮的洗礼，大部分人开始习惯把笔记本一合就完事了。而合上笔记本的动作在很多情况下（可以在Windows里面设置）都是进入睡眠S3。而S3有个问题是它还在消耗着电力，尽管比较少。这就带来一个严重的问题，如果在S3情况下电力消耗殆尽，那么未存储的东西不就丢失了吗？过去这种情况都由UEFI固件偷偷处理，它会在电力下降到一个阈值后偷偷开机，帮你把S3转换到S4。</p>
+<p>出问题的是很多小品牌的笔记本厂商，他们固件基础薄弱，这个功能问题很多。而随着不关机人群的扩展，出问题的机会越来越大。于是微软发明了个混合睡眠模式，即：</p>
+<ol>
+<li>合上盖子的时候进入混合睡眠模式，即虽然要进入S3，但也把S4需要的内容存储下来了。</li>
+<li>如果在电源消耗完之前从S3回来，例如开启盖子等。就按照S3启动路径。</li>
+<li>如果电源消耗结束后再回来，就按照S4的路径启动。</li>
+</ol>
+<p>这样相当于为S3加上了S4的双保险，保证文件不会丢失。</p>
+<p>你可以通过powercfg看一下你开启混合启动了吗：</p>
+<p><img src="/./../images/Windows%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%9F%E8%87%A3%EF%BC%9A%E4%BC%91%E7%9C%A0/v2-f9d8e3a7c30d1f7c1dfad250e9686b96.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>参考文献：</strong></p>
+<p>[1]. <a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/b8/2011/09/08/delivering-fast-boot-times-in-windows-8/">https://blogs.msdn.microsoft.com/b8/2011/09/08/delivering-fast-boot-times-in-windows-8/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Wim/" class="category-chain-item">Wim</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Wim/" class="print-no-link">#Wim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Wim/b4afe920/" title="你需要掌握的Scoop技巧和知识">
+                        <span class="hidden-mobile">你需要掌握的Scoop技巧和知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23li0kgQjtCqwFNwS4","clientSecret":"821f4ac10413f179966ab494641606756fb8a361","repo":"hexoBlogLaiZho","owner":"LaiZho","admin":["LaiZho"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '96e3ff49332ad5a3d39a8d01226cf25a'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://laizho.github.io/atom.xml" target="_blank" rel="nofollow noopener"><i class="iconfont icon-rss"></i>RSS</a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      渝ICP备19013968号
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+
+</body>
+</html>
